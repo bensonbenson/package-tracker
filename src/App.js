@@ -1,10 +1,10 @@
 import React from 'react';
-import './App.css';
+import PackageTracker from './components/PackageTracker';
 
 function App() {
   return (
-    <div className="App">
-
+    <div>
+      <PackageTracker />
     </div>
   );
 }

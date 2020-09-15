@@ -9,7 +9,7 @@ Make sure you have a firebase/firestore set up in GCP.
 Add a `firebase-creds.js` to the `/firebase` directory with your respective credentials.
 
 ```js
-export default creds = {
+export const creds = {
   "apiKey": "",
   "authDomain": "",
   "databaseURL": "",

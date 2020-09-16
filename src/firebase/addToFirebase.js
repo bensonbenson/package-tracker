@@ -2,16 +2,16 @@
 import { db } from './firebase';
 import { v4 as uuidv4 }from 'uuid';
 
-export const addPackage = (name, trackingNo) => {
+export const addPackage = (name, trackingNum, carrier) => {
   const id = uuidv4();
   const date = new Date();
 
   const uspsPackage = {
     id: id,
-    name: "test",
+    name: name,
     timestamp: date,
-    carrier: "usps",
-    trackingNo: "312124sfsdfsdf",
+    carrier: carrier,
+    trackingNum: trackingNum,
     delivered: false
   };
 

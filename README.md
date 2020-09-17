@@ -29,9 +29,11 @@ yarn start
 
 ## To-do
 - [ ] UI
-  - [ ] Add package section
+  - [x] Add package section
   - [ ] Package list/history
-- [ ] Attach firestore
-- [ ] Configure firestore
-- [ ] Push/pull data from firestore
+  - [ ] Flesh out UI/CSS better
+- [x] Attach firestore
+- [x] Configure firestore
+- [x] Push data to firestore
+- [ ] Pull data from firestore
 - [ ] Everything lol

@@ -20,7 +20,7 @@ export const addPackage = (name, trackingNum, carrier) => {
     console.log("success");
     console.log(date);
   })
-  .catch(e => {
-    console.log(`Error: ${e}`)
+  .catch(error => {
+    console.log(`Error adding: ${error}`)
   })
 }

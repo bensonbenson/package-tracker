@@ -6,7 +6,7 @@ import { addPackage } from '../firebase/addToFirebase';
 function AddPackage() {
   const [packageName, setPackageName] = useState();
   const [trackingNum, setTrackingNum] = useState();
-  const [carrier, setCarrier] = useState();
+  const [carrier, setCarrier] = useState("usps");
 
   const handleSelect = (event) => {
     setCarrier(event.target.value);
@@ -20,6 +20,14 @@ function AddPackage() {
     setTrackingNum(event.target.value);
   }
 
+  const handleAddPackage = () => {
+    if (!packageName || !trackingNum || !carrier) {
+      window.alert("Please complete all fields.");
+    } else {
+      addPackage(packageName, trackingNum, carrier);
+    }
+  }
+
   return (
     <div>
       <div>
@@ -27,26 +35,31 @@ function AddPackage() {
       </div>
       <div>
         <form className="formStyle">
-          <TextField required id="packageName" label="Package name" onChange={handlePackageName} />
-          <br />
-          <TextField required id="trackingNum" label="Tracking number" onChange={handleTrackingNum} />
-          <br />
-          <FormControl required fullWidth={true}>
-            <InputLabel id="select-label">Carrier</InputLabel>
-            <Select labelId="select-label"
-            id="select"
-            value={carrier}
-            onChange={handleSelect}
-            >
-              <MenuItem value="usps">USPS</MenuItem>
-              <MenuItem value="ups">UPS</MenuItem>
-              <MenuItem value="fedex">Fedex</MenuItem>
-              <MenuItem value="amazon">Amazon</MenuItem>
-            </Select>
-          </FormControl>
+          <div className="spaceBetweenFields">
+            <TextField required id="packageName" label="Package name" onChange={handlePackageName} />
+          </div>
+          <div className="spaceBetweenFields">
+            <TextField required id="trackingNum" label="Tracking number" onChange={handleTrackingNum} />
+          </div>
+          <div className="spaceBetweenFields">
+            <FormControl required fullWidth={true}>
+              <InputLabel id="select-label">Carrier</InputLabel>
+              <Select labelId="select-label"
+              id="select"
+              value={carrier}
+              onChange={handleSelect}
+              >
+                <MenuItem value="usps">USPS</MenuItem>
+                <MenuItem value="ups">UPS</MenuItem>
+                <MenuItem value="fedex">Fedex</MenuItem>
+                <MenuItem value="amazon">Amazon</MenuItem>
+              </Select>
+            </FormControl>
+          </div>
+
         </form>
       </div>
-      <Button onClick={() => addPackage(packageName, trackingNum, carrier)} variant="contained" color="primary">Add</Button>
+      <Button onClick={handleAddPackage} variant="contained" color="primary">Add</Button>
     </div>
   );
 }

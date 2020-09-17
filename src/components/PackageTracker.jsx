@@ -14,7 +14,7 @@ function PackageTracker() {
         container
         direction="row"
         justify="space-around"
-        alignItems="center"
+        alignItems="baseline"
       >
           <AddPackage />
           <PackageList />

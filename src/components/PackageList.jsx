@@ -1,18 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import { db } from '../firebase/firebase';
 import Loader from './Loader';
-
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+  Checkbox,
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle
+} from '@material-ui/core';
 
 function PackageList() {
   const [loading, setLoading] = useState(true);
   const [packages, setPackages] = useState();
+  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
+  const [packageToBeDeleted, setPackageToBeDeleted] = useState('');
 
   useEffect(() => {
     const unsub = db.collection('packages').onSnapshot(snap => {
@@ -57,44 +67,91 @@ function PackageList() {
     }
   }
 
+  // Change delivered status of a package
+  const handleDelivered = (packageItem) => {
+    // console.log(packageItem)
+    db.collection('packages').doc(packageItem.id).update({"delivered": !packageItem.delivered})
+    .catch(error => {
+      console.log(`Error in changing package delivered status: ${error}`)
+    });
+  }
+
+  // Open dialog to confirm deletion, save selected item in state to access it
+  const handleDeleteOpen = (packageItem) => {
+    setDeleteDialogOpen(true);
+    setPackageToBeDeleted(packageItem);
+  }
+
+  // Reset after closing dialog
+  const handleDeleteClose = () => {
+    setDeleteDialogOpen(false);
+    setPackageToBeDeleted('');
+  }
+
+  const handleDeletePackage = () => {
+    db.collection('packages').doc(packageToBeDeleted.id).delete()
+    .then(() =>{
+      handleDeleteClose();
+    })
+    .catch(error => {
+      console.log(`Error in deleting a package: ${error}`)
+    })
+  }
+
   const renderPackageList = () => {
     const packageList = sortPackagesByDate();
-    return (
-      <TableContainer component={Paper}>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell>Package Name</TableCell>
-              <TableCell>Carrier</TableCell>
-              <TableCell>Date</TableCell>
-              <TableCell>Tracking</TableCell>
-              <TableCell>Delivered</TableCell>
-              <TableCell></TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {
-              packageList.map((packageItem) => (
-                <TableRow key={packageItem.id}>
-                  <TableCell component="th" scope="row">{packageItem.name}</TableCell>
-                  <TableCell>{packageItem.carrier}</TableCell>
-                  <TableCell>{(new Date(packageItem.timestamp.toDate()).toLocaleDateString())}</TableCell>
-                  <TableCell><a target="_blank" rel="noopener noreferrer" href={generateTrackingURL(packageItem)}>Track here</a></TableCell>
-                  <TableCell>{packageItem.delivered ? 'true' : 'false'}</TableCell>
-                  <TableCell>Delete button</TableCell>
-                </TableRow>
-              ))
-            }
-          </TableBody>
-        </Table>
-      </TableContainer>
-    );
+
+    if (packageList.length < 1)
+      return(<div>You have no packages saved!</div>);
+    else
+      return (
+        <TableContainer component={Paper}>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell>Package Name</TableCell>
+                <TableCell>Carrier</TableCell>
+                <TableCell>Date Added</TableCell>
+                <TableCell>Tracking</TableCell>
+                <TableCell>Delivered</TableCell>
+                <TableCell></TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {
+                packageList.map((packageItem) => (
+                  <TableRow key={packageItem.id}>
+                    <TableCell component="th" scope="row">{packageItem.name}</TableCell>
+                    <TableCell>{packageItem.carrier}</TableCell>
+                    <TableCell>{(new Date(packageItem.timestamp.toDate()).toLocaleDateString())}</TableCell>
+                    <TableCell><a target="_blank" rel="noopener noreferrer" href={generateTrackingURL(packageItem)}>Track here</a></TableCell>
+                    <TableCell>{<Checkbox checked={packageItem.delivered} onChange={() => handleDelivered(packageItem)} value={packageItem.id} />}</TableCell>
+                    <TableCell><Button onClick={() => handleDeleteOpen(packageItem)} variant="contained" color="secondary">DELETE</Button></TableCell>
+                  </TableRow>
+                ))
+              }
+            </TableBody>
+          </Table>
+        </TableContainer>
+      );
   }
 
   return (
     loading ? <Loader /> :
     <div>
       {renderPackageList()}
+      <Dialog open={deleteDialogOpen} onClose={handleDeleteClose}>
+        <DialogTitle>Delete Confirmation</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Are you sure you want to delete '{packageToBeDeleted.name}'?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleDeleteClose} color="primary">Cancel</Button>
+          <Button onClick={handleDeletePackage}>Delete</Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 }

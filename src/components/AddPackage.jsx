@@ -1,12 +1,19 @@
 import React, { useState } from 'react';
 import '../styles/AddPackage.css';
-import { Button, TextField, FormControl, Select, MenuItem, InputLabel } from '@material-ui/core';
 import { addPackage } from '../firebase/addToFirebase';
+import {
+  Button,
+  TextField,
+  FormControl,
+  Select,
+  MenuItem,
+  InputLabel
+} from '@material-ui/core';
 
 function AddPackage() {
-  const [packageName, setPackageName] = useState();
-  const [trackingNum, setTrackingNum] = useState();
-  const [carrier, setCarrier] = useState("usps");
+  const [packageName, setPackageName] = useState('');
+  const [trackingNum, setTrackingNum] = useState('');
+  const [carrier, setCarrier] = useState("USPS");
 
   const handleSelect = (event) => {
     setCarrier(event.target.value);
@@ -24,7 +31,11 @@ function AddPackage() {
     if (!packageName || !trackingNum || !carrier) {
       window.alert("Please complete all fields.");
     } else {
-      addPackage(packageName, trackingNum, carrier);
+      addPackage(packageName, trackingNum, carrier)
+      // Clear fields
+      setPackageName('');
+      setTrackingNum('');
+      setCarrier('USPS');
     }
   }
 
@@ -36,10 +47,10 @@ function AddPackage() {
       <div>
         <form className="formStyle">
           <div className="spaceBetweenFields">
-            <TextField required id="packageName" label="Package name" onChange={handlePackageName} />
+            <TextField required id="packageName" label="Package name" onChange={handlePackageName} value={packageName}/>
           </div>
           <div className="spaceBetweenFields">
-            <TextField required id="trackingNum" label="Tracking number" onChange={handleTrackingNum} />
+            <TextField required id="trackingNum" label="Tracking number" onChange={handleTrackingNum} value={trackingNum}/>
           </div>
           <div className="spaceBetweenFields">
             <FormControl required fullWidth={true}>

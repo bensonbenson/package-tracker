@@ -1,6 +1,14 @@
 # Package Tracker
 A simple tool to keep track of multiple packages from various carriers all in one place and saved to GCP. All it takes is a firebase account with a simple firebase setup. It's fast and it reacts immediately!
 
+Currently supports the following carriers:
+```
+USPS
+UPS
+Fedex
+Amazon
+```
+
 **WIP**
 
 ## How to get started

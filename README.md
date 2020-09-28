@@ -36,4 +36,4 @@ yarn start
 - [x] Configure firestore
 - [x] Push data to firestore
 - [x] Pull data from firestore
-- [ ] Everything lol
+- [ ] Everything else/polish

@@ -20,14 +20,13 @@ import {
 
 function PackageList() {
   const [loading, setLoading] = useState(true);
-  const [packages, setPackages] = useState();
+  const [packages, setPackages] = useState([]);
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [packageToBeDeleted, setPackageToBeDeleted] = useState('');
 
   useEffect(() => {
     const unsub = db.collection('packages').onSnapshot(snap => {
       const data = snap.docs.map(doc => doc.data())
-      console.log(data);
       setPackages(data);
       setLoading(false);
     });
@@ -69,7 +68,6 @@ function PackageList() {
 
   // Change delivered status of a package
   const handleDelivered = (packageItem) => {
-    // console.log(packageItem)
     db.collection('packages').doc(packageItem.id).update({"delivered": !packageItem.delivered})
     .catch(error => {
       console.log(`Error in changing package delivered status: ${error}`)
@@ -88,6 +86,7 @@ function PackageList() {
     setPackageToBeDeleted('');
   }
 
+  // Delete package and close dialog
   const handleDeletePackage = () => {
     db.collection('packages').doc(packageToBeDeleted.id).delete()
     .then(() =>{

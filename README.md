@@ -1,5 +1,5 @@
 # Package Tracker
-Keep track of multiple packages from various carriers all in one place
+A simple tool to keep track of multiple packages from various carriers all in one place and saved to GCP. All it takes is a firebase account with a simple firebase setup. It's fast and it reacts immediately!
 
 **WIP**
 

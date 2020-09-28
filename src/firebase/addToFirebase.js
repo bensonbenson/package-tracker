@@ -16,10 +16,6 @@ export const addPackage = (name, trackingNum, carrier) => {
   };
 
   db.collection("packages").doc(id).set(uspsPackage)
-  .then(() => {
-    console.log("success");
-    console.log(date);
-  })
   .catch(error => {
     console.log(`Error adding: ${error}`)
   })

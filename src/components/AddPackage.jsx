@@ -49,10 +49,10 @@ function AddPackage() {
               value={carrier}
               onChange={handleSelect}
               >
-                <MenuItem value="usps">USPS</MenuItem>
-                <MenuItem value="ups">UPS</MenuItem>
-                <MenuItem value="fedex">Fedex</MenuItem>
-                <MenuItem value="amazon">Amazon</MenuItem>
+                <MenuItem value="USPS">USPS</MenuItem>
+                <MenuItem value="UPS">UPS</MenuItem>
+                <MenuItem value="Fedex">Fedex</MenuItem>
+                <MenuItem value="Amazon">Amazon</MenuItem>
               </Select>
             </FormControl>
           </div>

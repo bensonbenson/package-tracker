@@ -25,6 +25,7 @@ function PackageList() {
     return () => unsub();
   }, []);
 
+  // Reverse chronological order for packages
   const sortPackagesByDate = () => {
     const packageList = packages;
 
@@ -35,6 +36,25 @@ function PackageList() {
     })
 
     return packageList.reverse();
+  }
+
+  // Use the tracking number to generate a tracking URL
+  const generateTrackingURL = (packageItem) => {
+    const carrier = packageItem.carrier;
+    const trackingNum = packageItem.trackingNum;
+
+    switch(carrier) {
+      case 'USPS':
+        return `https://tools.usps.com/go/TrackConfirmAction?tLabels=${trackingNum}`;
+      case 'UPS':
+        return `https://www.ups.com/track?loc=null&tracknum=${trackingNum}`;
+      case 'Fedex':
+        return `https://fedex.com/apps/fedextrack/index.html?tracknumbers=${trackingNum}`;
+      case 'Amazon':
+        return `https://www.amazon.com/gp/your-account/order-details/ref=ppx_yo_dt_b_order_details_o00?ie=UTF8&orderID=${trackingNum}`
+      default:
+        return `http://doge2048.com/`;
+    }
   }
 
   const renderPackageList = () => {
@@ -49,6 +69,7 @@ function PackageList() {
               <TableCell>Date</TableCell>
               <TableCell>Tracking</TableCell>
               <TableCell>Delivered</TableCell>
+              <TableCell></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -58,8 +79,9 @@ function PackageList() {
                   <TableCell component="th" scope="row">{packageItem.name}</TableCell>
                   <TableCell>{packageItem.carrier}</TableCell>
                   <TableCell>{(new Date(packageItem.timestamp.toDate()).toLocaleDateString())}</TableCell>
-                  <TableCell>{packageItem.trackingNum}</TableCell>
+                  <TableCell><a target="_blank" rel="noopener noreferrer" href={generateTrackingURL(packageItem)}>Track here</a></TableCell>
                   <TableCell>{packageItem.delivered ? 'true' : 'false'}</TableCell>
+                  <TableCell>Delete button</TableCell>
                 </TableRow>
               ))
             }

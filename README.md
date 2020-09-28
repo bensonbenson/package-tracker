@@ -14,7 +14,7 @@ Amazon
 ## How to get started
 Make sure you have a firebase/firestore set up in GCP.
 
-Add a `firebase-creds.js` to the `/firebase` directory with your respective credentials.
+Add a `firebase-creds.js` to the `src/firebase` directory with your respective credentials.
 
 ```js
 export const creds = {

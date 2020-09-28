@@ -30,10 +30,10 @@ yarn start
 ## To-do
 - [ ] UI
   - [x] Add package section
-  - [ ] Package list/history
+  - [x] Package list/history
   - [ ] Flesh out UI/CSS better
 - [x] Attach firestore
 - [x] Configure firestore
 - [x] Push data to firestore
-- [ ] Pull data from firestore
+- [x] Pull data from firestore
 - [ ] Everything lol

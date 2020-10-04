@@ -41,7 +41,7 @@ function AddPackage() {
 
   return (
     <div>
-      <div>
+      <div className="addTitle">
         Add Package
       </div>
       <div>

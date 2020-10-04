@@ -1,4 +1,7 @@
 .centertitle {
   text-align: center;
-  padding-bottom: 25px;
+  padding: 25px 0px 25px 0px;
+  background-color: #60dbaa;
+  margin-bottom: 25px;
+  font-size: 25px;
 }

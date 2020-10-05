@@ -70,7 +70,7 @@ function AddPackage() {
 
         </form>
       </div>
-      <Button onClick={handleAddPackage} variant="contained" color="primary" disableElevation>Add Package</Button>
+      <Button onClick={handleAddPackage} variant="contained" color="primary" disableElevation style={{fontWeight: "bold"}}>Add Package</Button>
     </div>
   );
 }

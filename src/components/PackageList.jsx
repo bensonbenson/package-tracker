@@ -109,11 +109,11 @@ function PackageList() {
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell style={{fontWeight: "bold"}} align="center">Package Name</TableCell>
-                <TableCell style={{fontWeight: "bold"}} align="center">Carrier</TableCell>
-                <TableCell style={{fontWeight: "bold"}} align="center">Date Added</TableCell>
-                <TableCell style={{fontWeight: "bold"}} align="center">Tracking</TableCell>
-                <TableCell style={{fontWeight: "bold"}} align="center">Delivered</TableCell>
+                <TableCell style={{fontWeight: "1000"}} align="center">Package Name</TableCell>
+                <TableCell style={{fontWeight: "1000"}} align="center">Carrier</TableCell>
+                <TableCell style={{fontWeight: "1000"}} align="center">Date Added</TableCell>
+                <TableCell style={{fontWeight: "1000"}} align="center">Tracking</TableCell>
+                <TableCell style={{fontWeight: "1000"}} align="center">Delivered</TableCell>
                 <TableCell></TableCell>
               </TableRow>
             </TableHead>

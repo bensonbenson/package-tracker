@@ -40,17 +40,17 @@ function AddPackage() {
   }
 
   return (
-    <div>
+    <div style={{width: "27%"}}>
       <div className="addTitle">
         Add Package
       </div>
       <div>
         <form className="formStyle">
           <div className="spaceBetweenFields">
-            <TextField required id="packageName" label="Package name" onChange={handlePackageName} value={packageName}/>
+            <TextField fullWidth required id="packageName" label="Package name" onChange={handlePackageName} value={packageName}/>
           </div>
           <div className="spaceBetweenFields">
-            <TextField required id="trackingNum" label="Tracking number" onChange={handleTrackingNum} value={trackingNum}/>
+            <TextField fullWidth required id="trackingNum" label="Tracking number or Amazon order ID" onChange={handleTrackingNum} value={trackingNum}/>
           </div>
           <div className="spaceBetweenFields">
             <FormControl required fullWidth={true}>

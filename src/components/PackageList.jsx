@@ -122,7 +122,9 @@ function PackageList() {
                   <TableRow key={packageItem.id}>
                     <TableCell component="th" scope="row">{packageItem.name}</TableCell>
                     <TableCell>{packageItem.carrier}</TableCell>
-                    <TableCell>{(new Date(packageItem.timestamp.toDate()).toLocaleDateString())}</TableCell>
+                    <TableCell>
+                      {`${(new Date(packageItem.timestamp.toDate()).toLocaleDateString())} ${(new Date(packageItem.timestamp.toDate()).toLocaleTimeString('en-US'))}`}
+                    </TableCell>
                     <TableCell><a target="_blank" rel="noopener noreferrer" href={generateTrackingURL(packageItem)}>Track here</a></TableCell>
                     <TableCell>{<Checkbox checked={packageItem.delivered} onChange={() => handleDelivered(packageItem)} value={packageItem.id} />}</TableCell>
                     <TableCell><Button onClick={() => handleDeleteOpen(packageItem)} variant="contained" color="secondary">DELETE</Button></TableCell>

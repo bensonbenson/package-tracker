@@ -6,7 +6,7 @@ Currently supports the following carriers:
 USPS
 UPS
 Fedex
-Amazon
+Amazon (only supports Order-ID values)
 ```
 
 **WIP**

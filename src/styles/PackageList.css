@@ -1,0 +1,7 @@
+.inProgressRow {
+  background-color: #e8f5e9;
+}
+
+.deliveredRow {
+  opacity: 0.2;
+}

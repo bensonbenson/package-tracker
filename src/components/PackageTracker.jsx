@@ -3,10 +3,28 @@ import '../styles/PackageTracker.css';
 import { Grid } from '@material-ui/core';
 import AddPackage from './AddPackage';
 import PackageList from './PackageList';
+import { ThemeProvider } from '@material-ui/styles';
+import { createMuiTheme } from '@material-ui/core/styles';
+
+const muiFont = "'Gotu', sans-serif";
+
+const theme = createMuiTheme({
+  typography: {
+    fontFamily: muiFont
+  },
+  palette: {
+    primary: {
+      main: "#b3e5fc"
+    },
+    secondary: {
+      main: "#ff8a65"
+    }
+  }
+});
 
 function PackageTracker() {
   return (
-    <div>
+    <ThemeProvider theme={theme}>
       <div className='centertitle'>
         Package Tracker
       </div>
@@ -19,7 +37,7 @@ function PackageTracker() {
           <AddPackage />
           <PackageList />
       </Grid>
-    </div>
+    </ThemeProvider>
   );
 }
 

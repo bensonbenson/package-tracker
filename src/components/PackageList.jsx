@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { db } from '../firebase/firebase';
 import Loader from './Loader';
+import '../styles/PackageList.css';
+import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 import {
   Table,
   TableBody,
@@ -8,7 +10,6 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-  Paper,
   Checkbox,
   Button,
   Dialog,
@@ -104,30 +105,34 @@ function PackageList() {
       return(<div>You have no packages saved!</div>);
     else
       return (
-        <TableContainer component={Paper}>
+        <TableContainer>
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell>Package Name</TableCell>
-                <TableCell>Carrier</TableCell>
-                <TableCell>Date Added</TableCell>
-                <TableCell>Tracking</TableCell>
-                <TableCell>Delivered</TableCell>
+                <TableCell style={{fontWeight: "bold"}} align="center">Package Name</TableCell>
+                <TableCell style={{fontWeight: "bold"}} align="center">Carrier</TableCell>
+                <TableCell style={{fontWeight: "bold"}} align="center">Date Added</TableCell>
+                <TableCell style={{fontWeight: "bold"}} align="center">Tracking</TableCell>
+                <TableCell style={{fontWeight: "bold"}} align="center">Delivered</TableCell>
                 <TableCell></TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {
                 packageList.map((packageItem) => (
-                  <TableRow key={packageItem.id}>
-                    <TableCell component="th" scope="row">{packageItem.name}</TableCell>
-                    <TableCell>{packageItem.carrier}</TableCell>
-                    <TableCell>
+                  <TableRow key={packageItem.id} className={packageItem.delivered ? "deliveredRow" : "inProgressRow"}>
+                    <TableCell style={{borderBottom: "none"}}>{packageItem.name}</TableCell>
+                    <TableCell style={{borderBottom: "none"}} align="center">{packageItem.carrier}</TableCell>
+                    <TableCell style={{borderBottom: "none"}}>
                       {`${(new Date(packageItem.timestamp.toDate()).toLocaleDateString())} ${(new Date(packageItem.timestamp.toDate()).toLocaleTimeString('en-US'))}`}
                     </TableCell>
-                    <TableCell><a target="_blank" rel="noopener noreferrer" href={generateTrackingURL(packageItem)}>Track here</a></TableCell>
-                    <TableCell>{<Checkbox checked={packageItem.delivered} onChange={() => handleDelivered(packageItem)} value={packageItem.id} />}</TableCell>
-                    <TableCell><Button onClick={() => handleDeleteOpen(packageItem)} variant="contained" color="secondary">DELETE</Button></TableCell>
+                    <TableCell style={{borderBottom: "none"}} align="center"><a target="_blank" rel="noopener noreferrer" href={generateTrackingURL(packageItem)}>Track here</a></TableCell>
+                    <TableCell style={{borderBottom: "none"}} align="center">{<Checkbox checked={packageItem.delivered} onChange={() => handleDelivered(packageItem)} value={packageItem.id} />}</TableCell>
+                    <TableCell style={{borderBottom: "none"}}>
+                      <Button onClick={() => handleDeleteOpen(packageItem)} style={{ backgroundColor: 'transparent' }}>
+                        <DeleteOutlineIcon color="secondary"/>
+                      </Button>
+                    </TableCell>
                   </TableRow>
                 ))
               }

@@ -2,7 +2,7 @@
   "name": "package-tracker",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://bensonbenson.github.io/packages",
+  "homepage": "https://bensonbenson.github.io/package-tracker",
   "dependencies": {
     "@material-ui/core": "^4.11.0",
     "@testing-library/jest-dom": "^4.2.4",

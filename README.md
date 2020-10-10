@@ -39,7 +39,8 @@ yarn start
 - [ ] UI
   - [x] Add package section
   - [x] Package list/history
-  - [ ] Flesh out UI/CSS better
+  - [x] Flesh out UI/CSS better
+  - [ ] Figure out how to make responsive on mobile
 - [x] Attach firestore
 - [x] Configure firestore
 - [x] Push data to firestore

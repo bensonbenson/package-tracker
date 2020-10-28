@@ -7,6 +7,7 @@ USPS
 UPS
 Fedex
 Amazon (only supports Order-ID values)
+DHL
 ```
 
 **WIP**

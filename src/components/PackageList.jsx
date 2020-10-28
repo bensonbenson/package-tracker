@@ -62,6 +62,8 @@ function PackageList() {
         return `https://fedex.com/apps/fedextrack/index.html?tracknumbers=${trackingNum}`;
       case 'Amazon':
         return `https://www.amazon.com/gp/your-account/order-details/ref=ppx_yo_dt_b_order_details_o00?ie=UTF8&orderID=${trackingNum}`
+      case 'DHL':
+        return `https://www.dhl.com/en/express/tracking.html?AWB=${trackingNum}`
       default:
         return `http://doge2048.com/`;
     }

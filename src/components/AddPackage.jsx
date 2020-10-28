@@ -4,16 +4,16 @@ import { addPackage } from '../firebase/addToFirebase';
 import {
   Button,
   TextField,
-  FormControl,
-  Select,
-  MenuItem,
-  InputLabel
+  InputLabel,
+  RadioGroup,
+  FormControlLabel,
+  Radio
 } from '@material-ui/core';
 
 function AddPackage() {
   const [packageName, setPackageName] = useState('');
   const [trackingNum, setTrackingNum] = useState('');
-  const [carrier, setCarrier] = useState("USPS");
+  const [carrier, setCarrier] = useState('');
 
   const handleSelect = (event) => {
     setCarrier(event.target.value);
@@ -35,7 +35,7 @@ function AddPackage() {
       // Clear fields
       setPackageName('');
       setTrackingNum('');
-      setCarrier('USPS');
+      setCarrier('');
     }
   }
 
@@ -50,25 +50,21 @@ function AddPackage() {
             <TextField fullWidth required id="packageName" label="Package name" onChange={handlePackageName} value={packageName}/>
           </div>
           <div className="spaceBetweenFields">
-            <TextField fullWidth required id="trackingNum" label="Tracking number or Amazon order ID" onChange={handleTrackingNum} value={trackingNum}/>
+            <TextField fullWidth required id="trackingNum" label="Tracking number" onChange={handleTrackingNum} value={trackingNum}/>
           </div>
           <div className="spaceBetweenFields">
-            <FormControl required fullWidth={true}>
-              <InputLabel id="select-label">Carrier</InputLabel>
-              <Select labelId="select-label"
-              id="select"
+            <RadioGroup
               value={carrier}
               onChange={handleSelect}
-              >
-                <MenuItem value="Amazon">Amazon</MenuItem>
-                <MenuItem value="DHL">DHL</MenuItem>
-                <MenuItem value="Fedex">Fedex</MenuItem>
-                <MenuItem value="UPS">UPS</MenuItem>
-                <MenuItem value="USPS">USPS</MenuItem>
-              </Select>
-            </FormControl>
+            >
+              <InputLabel id="select-label">Select a carrier:</InputLabel>
+              <FormControlLabel value="Amazon" control={<Radio color="primary" />} label="Amazon (use Order ID number)" />
+              <FormControlLabel value="DHL" control={<Radio color="primary"/>} label="DHL" />
+              <FormControlLabel value="Fedex" control={<Radio color="primary" />} label="Fedex" />
+              <FormControlLabel value="UPS" control={<Radio color="primary" />} label="UPS" />
+              <FormControlLabel value="USPS" control={<Radio color="primary" />} label="USPS" />
+            </RadioGroup>
           </div>
-
         </form>
       </div>
       <Button onClick={handleAddPackage} variant="contained" color="primary" disableElevation style={{fontWeight: "bold"}}>Add Package</Button>

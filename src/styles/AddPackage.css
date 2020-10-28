@@ -4,7 +4,10 @@
 
 .spaceBetweenFields {
   padding: 10px 0px 10px 0px;
+}
 
+.moreSpaceBetweenFields {
+  padding: 25px 0px 10px 0px;
 }
 
 .addTitle {

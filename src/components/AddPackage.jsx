@@ -52,17 +52,17 @@ function AddPackage() {
           <div className="spaceBetweenFields">
             <TextField fullWidth required id="trackingNum" label="Tracking number" onChange={handleTrackingNum} value={trackingNum}/>
           </div>
-          <div className="spaceBetweenFields">
+          <div className="moreSpaceBetweenFields">
             <RadioGroup
               value={carrier}
               onChange={handleSelect}
             >
               <InputLabel id="select-label">Select a carrier:</InputLabel>
-              <FormControlLabel value="Amazon" control={<Radio color="primary" />} label="Amazon (use Order ID number)" />
-              <FormControlLabel value="DHL" control={<Radio color="primary"/>} label="DHL" />
-              <FormControlLabel value="Fedex" control={<Radio color="primary" />} label="Fedex" />
-              <FormControlLabel value="UPS" control={<Radio color="primary" />} label="UPS" />
-              <FormControlLabel value="USPS" control={<Radio color="primary" />} label="USPS" />
+              <FormControlLabel value="Amazon" control={<Radio color="primary" size="small"/>} label="Amazon (use Order ID number)" />
+              <FormControlLabel value="DHL" control={<Radio color="primary" size="small" />} label="DHL" />
+              <FormControlLabel value="Fedex" control={<Radio color="primary" size="small" />} label="Fedex" />
+              <FormControlLabel value="UPS" control={<Radio color="primary" size="small" />} label="UPS" />
+              <FormControlLabel value="USPS" control={<Radio color="primary" size="small" />} label="USPS" />
             </RadioGroup>
           </div>
         </form>

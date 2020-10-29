@@ -35,7 +35,9 @@ function PackageTracker() {
         alignItems="baseline"
       >
           <AddPackage />
-          <PackageList />
+          <div className="packageList">
+            <PackageList />
+          </div>
       </Grid>
     </ThemeProvider>
   );

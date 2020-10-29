@@ -5,3 +5,9 @@
 .deliveredRow {
   background-color: #e8eaf6;
 }
+
+.tableCell {
+  font-weight: 1000;
+  white-space: nowrap;
+  align-items: center;
+}

@@ -112,9 +112,8 @@ function PackageList() {
             <Table style={{tableLayout: "fixed"}}>
               <TableHead>
                 <TableRow>
-                  <TableCell className="tableCell" align="center">Package Name</TableCell>
+                  <TableCell className="tableCell" align="center">Name</TableCell>
                   <TableCell className="tableCell" align="center">Carrier</TableCell>
-                  <TableCell className="tableCell" align="center">Date Added</TableCell>
                   <TableCell className="tableCell" align="center">Tracking</TableCell>
                   <TableCell className="tableCell" align="center">Delivered</TableCell>
                   <TableCell></TableCell>
@@ -124,11 +123,8 @@ function PackageList() {
                 {
                   packageList.map((packageItem) => (
                     <TableRow key={packageItem.id} className={packageItem.delivered ? "deliveredRow" : "inProgressRow"}>
-                      <TableCell style={{borderBottom: "none"}} align="center">{packageItem.name}</TableCell>
+                      <TableCell style={{borderBottom: "none"}}>{packageItem.name}</TableCell>
                       <TableCell style={{borderBottom: "none"}} align="center">{packageItem.carrier}</TableCell>
-                      <TableCell style={{borderBottom: "none"}} align="center">
-                        {`${(new Date(packageItem.timestamp.toDate()).toLocaleDateString())} ${(new Date(packageItem.timestamp.toDate()).toLocaleTimeString('en-US'))}`}
-                      </TableCell>
                       <TableCell style={{borderBottom: "none"}} align="center"><a target="_blank" rel="noopener noreferrer" href={generateTrackingURL(packageItem)}>Track here</a></TableCell>
                       <TableCell style={{borderBottom: "none"}} align="center">{<Checkbox checked={packageItem.delivered} onChange={() => handleDelivered(packageItem)} value={packageItem.id} />}</TableCell>
                       <TableCell style={{borderBottom: "none"}} align="center">

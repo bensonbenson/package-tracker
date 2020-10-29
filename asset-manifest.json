@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/package-tracker/static/css/main.acb62cd2.chunk.css",
-    "main.js": "/package-tracker/static/js/main.ee30bca6.chunk.js",
-    "main.js.map": "/package-tracker/static/js/main.ee30bca6.chunk.js.map",
+    "main.js": "/package-tracker/static/js/main.613fc0bc.chunk.js",
+    "main.js.map": "/package-tracker/static/js/main.613fc0bc.chunk.js.map",
     "runtime-main.js": "/package-tracker/static/js/runtime-main.f12ed79f.js",
     "runtime-main.js.map": "/package-tracker/static/js/runtime-main.f12ed79f.js.map",
     "static/js/2.51036d10.chunk.js": "/package-tracker/static/js/2.51036d10.chunk.js",
     "static/js/2.51036d10.chunk.js.map": "/package-tracker/static/js/2.51036d10.chunk.js.map",
     "index.html": "/package-tracker/index.html",
-    "precache-manifest.e833e0a06aca630e839085fb9477a7ad.js": "/package-tracker/precache-manifest.e833e0a06aca630e839085fb9477a7ad.js",
+    "precache-manifest.28987c6dd6ca39f973806e723926b73f.js": "/package-tracker/precache-manifest.28987c6dd6ca39f973806e723926b73f.js",
     "service-worker.js": "/package-tracker/service-worker.js",
     "static/css/main.acb62cd2.chunk.css.map": "/package-tracker/static/css/main.acb62cd2.chunk.css.map",
     "static/js/2.51036d10.chunk.js.LICENSE.txt": "/package-tracker/static/js/2.51036d10.chunk.js.LICENSE.txt"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.f12ed79f.js",
     "static/js/2.51036d10.chunk.js",
     "static/css/main.acb62cd2.chunk.css",
-    "static/js/main.ee30bca6.chunk.js"
+    "static/js/main.613fc0bc.chunk.js"
   ]
 }

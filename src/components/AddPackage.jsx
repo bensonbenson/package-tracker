@@ -40,7 +40,7 @@ function AddPackage() {
   }
 
   return (
-    <div style={{width: "75%"}}>
+    <div className="addPackageContainer">
       <div className="addTitle">
         Add Package
       </div>

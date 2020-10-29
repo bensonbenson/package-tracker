@@ -13,3 +13,8 @@
 .addTitle {
   font-size: 25px;
 }
+
+.addPackageContainer {
+  width: 75%;
+  max-width: 1350px;
+}

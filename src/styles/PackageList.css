@@ -11,3 +11,8 @@
   white-space: nowrap;
   align-items: center;
 }
+
+.tableContainer {
+  table-layout: fixed;
+  max-width: 1280px;
+}

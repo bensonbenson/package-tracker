@@ -109,7 +109,7 @@ function PackageList() {
       return (
         <Grid container>
           <Grid item xs={12}>
-            <Table style={{tableLayout: "fixed"}}>
+            <Table className="tableContainer">
               <TableHead>
                 <TableRow>
                   <TableCell className="tableCell" align="center">Name</TableCell>

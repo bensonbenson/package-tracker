@@ -13,7 +13,7 @@ DHL
 **WIP**
 
 ## How to get started
-Make sure you have a firebase/firestore set up in GCP.
+Make sure you have a firebase/firestore [set up in GCP](https://firebase.google.com/docs/firestore/quickstart#create).
 
 Add a `firebase-creds.js` to the `src/firebase` directory with your respective credentials.
 
@@ -41,7 +41,10 @@ yarn start
   - [x] Add package section
   - [x] Package list/history
   - [x] Flesh out UI/CSS better
-  - [ ] Figure out how to make responsive on mobile
+  - [x] Figure out how to make responsive on mobile
+  - [ ] Display error/retry button if fail to fetch data
+  - [ ] Automagically detect carrier
+  - [ ] Automagically detect delivered status, requires deeper connection to carrier
 - [x] Attach firestore
 - [x] Configure firestore
 - [x] Push data to firestore

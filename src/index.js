@@ -11,7 +11,7 @@ ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <Switch>
-        <Route exact path='/' component={App} />
+        <Route exact path='/package-tracker' component={App} />
         <Route path='/login' component={Login}/>
         <Route component={FourOhFour} />
       </Switch>

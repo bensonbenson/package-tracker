@@ -15,9 +15,10 @@ function Login() {
   const handleLogin = (event) => {
     if (password === authPassword.password) {
       localStorage.setItem('packagetracker', 'token');
+      window.location.reload();
     } else {
-      event.preventDefault();
       setIsPasswordInvalid(true);
+      event.preventDefault();
     }
   }
 

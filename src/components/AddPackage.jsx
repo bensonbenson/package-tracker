@@ -39,6 +39,12 @@ function AddPackage() {
     }
   }
 
+  // Remove localstorage and refresh
+  const handleLogOut = () => {
+    localStorage.removeItem('packagetracker');
+    window.location.reload();
+  }
+
   return (
     <div className="addPackageContainer">
       <div className="addTitle">
@@ -68,6 +74,7 @@ function AddPackage() {
         </form>
       </div>
       <Button onClick={handleAddPackage} variant="contained" color="primary" disableElevation style={{fontWeight: "bold"}}>Add Package</Button>
+      <Button onClick={handleLogOut} variant="contained" color="secondary" disableElevation style={{fontWeight: "bold", float: "right"}}>Log Out</Button>
     </div>
   );
 }

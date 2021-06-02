@@ -29,6 +29,14 @@ export const creds = {
 }
 ```
 
+The frontend is password protected. To make use of this locally, add a `password.js` file in `/src/`.
+
+```js
+export const authPassword = {
+  "password": "yourPassword"
+}
+```
+
 and then
 
 ```bash

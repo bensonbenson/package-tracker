@@ -58,3 +58,6 @@ yarn start
 - [x] Push data to firestore
 - [x] Pull data from firestore
 - [ ] Everything else/polish
+
+## Preview
+![alt text](./src/assets/preview.gif)

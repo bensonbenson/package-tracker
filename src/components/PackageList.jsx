@@ -24,6 +24,7 @@ function PackageList() {
   const [packages, setPackages] = useState([]);
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [packageToBeDeleted, setPackageToBeDeleted] = useState('');
+  const [isDeletingCheckedPackages, setIsDeletingCheckedPackages] = useState(false);
 
   useEffect(() => {
     const unsub = db.collection('packages').onSnapshot(snap => {
@@ -90,14 +91,33 @@ function PackageList() {
   }
 
   // Delete package and close dialog
+  // or delete checked packages and close dialog
   const handleDeletePackage = () => {
-    db.collection('packages').doc(packageToBeDeleted.id).delete()
-    .then(() =>{
+    if (isDeletingCheckedPackages) {
+      packages.forEach(element => {
+        if (element.delivered) {
+          db.collection('packages').doc(element.id).delete()
+          .catch(error => {
+            console.log(`Error in deleting a package: ${error}`)
+          })
+        }
+      });
       handleDeleteClose();
-    })
-    .catch(error => {
-      console.log(`Error in deleting a package: ${error}`)
-    })
+    } else {
+      db.collection('packages').doc(packageToBeDeleted.id).delete()
+      .then(() =>{
+        handleDeleteClose();
+      })
+      .catch(error => {
+        console.log(`Error in deleting a package: ${error}`)
+      })
+    }
+  }
+
+  // Delete checked packages
+  const handleDeleteCheckedItems = () => {
+    setIsDeletingCheckedPackages(true);
+    setDeleteDialogOpen(true);
   }
 
   const renderPackageList = () => {
@@ -116,7 +136,9 @@ function PackageList() {
                   <TableCell className="tableCell" align="center">Carrier</TableCell>
                   <TableCell className="tableCell" align="center">Tracking</TableCell>
                   <TableCell className="tableCell" align="center">Delivered</TableCell>
-                  <TableCell></TableCell>
+                  <TableCell className="tableCell">
+                    <Button onClick={handleDeleteCheckedItems} size="small" variant="contained" color="secondary" disableElevation style={{margin: '0 auto', display: "flex"}}>Delete Checked Items</Button>
+                  </TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -150,7 +172,11 @@ function PackageList() {
         <DialogTitle>Delete Confirmation</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            Are you sure you want to delete '{packageToBeDeleted.name}'?
+            {
+              isDeletingCheckedPackages ?
+              'Are you sure you want to delete all checked packages?' :
+              `Are you sure you want to delete '${packageToBeDeleted.name}'?`
+            }
           </DialogContentText>
         </DialogContent>
         <DialogActions>

@@ -10,7 +10,9 @@ Amazon (only supports Order-ID values)
 DHL
 ```
 
-**WIP**
+## WIP
+
+This is a WIP project, but only because it's missing features from the to-do list; it's perfectly usable for everyday package tracking!
 
 ## How to get started
 Make sure you have a firebase/firestore [set up in GCP](https://firebase.google.com/docs/firestore/quickstart#create).
@@ -57,7 +59,7 @@ yarn start
 - [x] Configure firestore
 - [x] Push data to firestore
 - [x] Pull data from firestore
-- [ ] Everything else/polish
+- [ ] More polish
 
 ## Preview
 ![alt text](./src/assets/preview.gif)

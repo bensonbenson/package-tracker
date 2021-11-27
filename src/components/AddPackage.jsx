@@ -1,19 +1,26 @@
 import React, { useState } from 'react';
 import '../styles/AddPackage.css';
 import { addPackage } from '../firebase/addToFirebase';
+import { db } from '../firebase/firebase';
 import {
   Button,
   TextField,
   InputLabel,
   RadioGroup,
   FormControlLabel,
-  Radio
+  Radio,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
 } from '@material-ui/core';
 
-function AddPackage() {
+function AddPackage(props) {
   const [packageName, setPackageName] = useState('');
   const [trackingNum, setTrackingNum] = useState('');
   const [carrier, setCarrier] = useState('');
+  const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
 
   const handleSelect = (event) => {
     setCarrier(event.target.value);
@@ -43,6 +50,44 @@ function AddPackage() {
   const handleLogOut = () => {
     localStorage.removeItem('packagetracker');
     window.location.reload();
+  }
+
+  // Delete all checked/delivered items
+  const handleDeleteAllPackages = () => {
+    props.packages.forEach(element => {
+      if (element.delivered) {
+        db.collection('packages').doc(element.id).delete()
+        .catch(error => {
+          console.log(`Error in deleting a package: ${error}`)
+        })
+      }
+    });
+    handleDeleteDialogClose();
+  }
+
+  const handleDeleteDialogOpen = () => {
+    setIsDeleteDialogOpen(true);
+  }
+
+  const handleDeleteDialogClose = () => {
+    setIsDeleteDialogOpen(false);
+  }
+
+  const deleteDialog = () => {
+    return (
+      <Dialog open={isDeleteDialogOpen} onClose={handleDeleteDialogClose}>
+        <DialogTitle>Delete Confirmation</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Are you sure you want to delete all checked packages?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleDeleteDialogClose} color="primary">Cancel</Button>
+          <Button onClick={handleDeleteAllPackages}>Delete</Button>
+        </DialogActions>
+      </Dialog>
+    )
   }
 
   return (
@@ -75,6 +120,8 @@ function AddPackage() {
       </div>
       <Button onClick={handleAddPackage} variant="contained" color="primary" disableElevation style={{fontWeight: "bold"}}>Add Package</Button>
       <Button onClick={handleLogOut} variant="contained" color="secondary" disableElevation style={{fontWeight: "bold", float: "right"}}>Log Out</Button>
+      <Button onClick={handleDeleteDialogOpen} variant="contained" color="secondary" disableElevation style={{fontWeight: "bold", float: "right", "marginRight": "25px"}}>Delete Checked Items</Button>
+      {deleteDialog()}
     </div>
   );
 }

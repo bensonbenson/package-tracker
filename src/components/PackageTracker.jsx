@@ -1,15 +1,16 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/PackageTracker.css';
 import { Grid } from '@material-ui/core';
 import AddPackage from './AddPackage';
 import PackageList from './PackageList';
+import { db } from '../firebase/firebase';
 import { ThemeProvider } from '@material-ui/styles';
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
 import { Redirect } from 'react-router-dom';
 
 const muiFont = "'Gotu', sans-serif";
 
-const theme = createMuiTheme({
+const theme = createTheme({
   typography: {
     fontFamily: muiFont
   },
@@ -24,6 +25,20 @@ const theme = createMuiTheme({
 });
 
 function PackageTracker() {
+  const [loading, setLoading] = useState(true);
+  const [packages, setPackages] = useState([]);
+
+  // Fetch data from store
+  useEffect(() => {
+    const unsub = db.collection('packages').onSnapshot(snap => {
+      const data = snap.docs.map(doc => doc.data())
+      setPackages(data);
+      setLoading(false);
+    });
+
+    return () => unsub();
+  }, []);
+
   if (!localStorage.getItem("packagetracker")) {
     return <Redirect to="/login" />;
   }
@@ -39,9 +54,9 @@ function PackageTracker() {
         justify="space-evenly"
         alignItems="baseline"
       >
-          <AddPackage />
+          <AddPackage packages={packages}/>
           <div className="packageList">
-            <PackageList />
+            <PackageList packages={packages} loading={loading} />
           </div>
       </Grid>
     </ThemeProvider>

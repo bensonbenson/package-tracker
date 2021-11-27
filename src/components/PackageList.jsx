@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { db } from '../firebase/firebase';
 import Loader from './Loader';
 import '../styles/PackageList.css';
-import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 import {
   Table,
   TableBody,
@@ -10,35 +9,13 @@ import {
   TableHead,
   TableRow,
   Checkbox,
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
   Grid
 } from '@material-ui/core';
 
-function PackageList() {
-  const [loading, setLoading] = useState(true);
-  const [packages, setPackages] = useState([]);
-  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
-  const [packageToBeDeleted, setPackageToBeDeleted] = useState('');
-  const [isDeletingCheckedPackages, setIsDeletingCheckedPackages] = useState(false);
-
-  useEffect(() => {
-    const unsub = db.collection('packages').onSnapshot(snap => {
-      const data = snap.docs.map(doc => doc.data())
-      setPackages(data);
-      setLoading(false);
-    });
-
-    return () => unsub();
-  }, []);
-
+function PackageList(props) {
   // Reverse chronological order for packages
   const sortPackagesByDate = () => {
-    const packageList = packages;
+    const packageList = props.packages;
 
     packageList.sort(function compare(a, b) {
       const dateA = new Date(a.timestamp.toDate());
@@ -78,48 +55,6 @@ function PackageList() {
     });
   }
 
-  // Open dialog to confirm deletion, save selected item in state to access it
-  const handleDeleteOpen = (packageItem) => {
-    setDeleteDialogOpen(true);
-    setPackageToBeDeleted(packageItem);
-  }
-
-  // Reset after closing dialog
-  const handleDeleteClose = () => {
-    setDeleteDialogOpen(false);
-    setPackageToBeDeleted('');
-  }
-
-  // Delete package and close dialog
-  // or delete checked packages and close dialog
-  const handleDeletePackage = () => {
-    if (isDeletingCheckedPackages) {
-      packages.forEach(element => {
-        if (element.delivered) {
-          db.collection('packages').doc(element.id).delete()
-          .catch(error => {
-            console.log(`Error in deleting a package: ${error}`)
-          })
-        }
-      });
-      handleDeleteClose();
-    } else {
-      db.collection('packages').doc(packageToBeDeleted.id).delete()
-      .then(() =>{
-        handleDeleteClose();
-      })
-      .catch(error => {
-        console.log(`Error in deleting a package: ${error}`)
-      })
-    }
-  }
-
-  // Delete checked packages
-  const handleDeleteCheckedItems = () => {
-    setIsDeletingCheckedPackages(true);
-    setDeleteDialogOpen(true);
-  }
-
   const renderPackageList = () => {
     const packageList = sortPackagesByDate();
 
@@ -136,9 +71,6 @@ function PackageList() {
                   <TableCell className="tableCell" align="center">Carrier</TableCell>
                   <TableCell className="tableCell" align="center">Tracking</TableCell>
                   <TableCell className="tableCell" align="center">Delivered</TableCell>
-                  <TableCell className="tableCell">
-                    <Button onClick={handleDeleteCheckedItems} size="small" variant="contained" color="secondary" disableElevation style={{margin: '0 auto', display: "flex"}}>Delete Checked Items</Button>
-                  </TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -149,11 +81,6 @@ function PackageList() {
                       <TableCell style={{borderBottom: "none"}} align="center">{packageItem.carrier}</TableCell>
                       <TableCell style={{borderBottom: "none"}} align="center"><a target="_blank" rel="noopener noreferrer" href={generateTrackingURL(packageItem)}>Track here</a></TableCell>
                       <TableCell style={{borderBottom: "none"}} align="center">{<Checkbox checked={packageItem.delivered} onChange={() => handleDelivered(packageItem)} value={packageItem.id} />}</TableCell>
-                      <TableCell style={{borderBottom: "none"}} align="center">
-                        <Button onClick={() => handleDeleteOpen(packageItem)} style={{ backgroundColor: 'transparent' }}>
-                          <DeleteOutlineIcon color="secondary"/>
-                        </Button>
-                      </TableCell>
                     </TableRow>
                   ))
                 }
@@ -165,25 +92,9 @@ function PackageList() {
   }
 
   return (
-    loading ? <Loader /> :
+    props.loading ? <Loader /> :
     <div>
       {renderPackageList()}
-      <Dialog open={deleteDialogOpen} onClose={handleDeleteClose}>
-        <DialogTitle>Delete Confirmation</DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            {
-              isDeletingCheckedPackages ?
-              'Are you sure you want to delete all checked packages?' :
-              `Are you sure you want to delete '${packageToBeDeleted.name}'?`
-            }
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleDeleteClose} color="primary">Cancel</Button>
-          <Button onClick={handleDeletePackage}>Delete</Button>
-        </DialogActions>
-      </Dialog>
     </div>
   );
 }

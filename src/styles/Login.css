@@ -1,0 +1,7 @@
+.centerLogin {
+  text-align: center;
+}
+
+.passwordIncorrect {
+  color: #ff6961;
+}

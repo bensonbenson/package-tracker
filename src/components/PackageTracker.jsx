@@ -5,6 +5,7 @@ import AddPackage from './AddPackage';
 import PackageList from './PackageList';
 import { ThemeProvider } from '@material-ui/styles';
 import { createMuiTheme } from '@material-ui/core/styles';
+import { Redirect } from 'react-router-dom';
 
 const muiFont = "'Gotu', sans-serif";
 
@@ -23,6 +24,10 @@ const theme = createMuiTheme({
 });
 
 function PackageTracker() {
+  if (!localStorage.getItem("packagetracker")) {
+    return <Redirect to="/login" />;
+  }
+
   return (
     <ThemeProvider theme={theme}>
       <div className='centertitle'>

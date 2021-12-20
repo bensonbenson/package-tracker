@@ -27,3 +27,12 @@ src/firebase/firebase-creds.js
 
 # frontend login
 password.js
+
+# yarn
+.yarn/*
+!.yarn/cache
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions

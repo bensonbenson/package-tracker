@@ -1,5 +1,5 @@
-import firebase from 'firebase';
-import { creds } from './firebase-creds'
+import firebase from "firebase";
+import { creds } from "./firebase-creds";
 
 const firebaseApp = firebase.initializeApp(creds);
 

@@ -1,8 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Yatra+One&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Gotu&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Yatra+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Gotu&display=swap");
 body {
   margin: 0;
-  font-family: 'Yatra One', cursive;
+  font-family: "Yatra One", cursive;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

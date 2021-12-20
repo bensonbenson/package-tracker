@@ -1,6 +1,6 @@
-import React from 'react';
-import PackageTracker from './components/PackageTracker';
-import './index.css'
+import React from "react";
+import PackageTracker from "./components/PackageTracker";
+import "./index.css";
 
 function App() {
   return (

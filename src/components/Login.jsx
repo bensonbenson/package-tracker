@@ -3,7 +3,7 @@ import { Redirect } from "react-router-dom";
 import { authPassword } from "../password";
 import "../styles/Login.css";
 
-function Login() {
+const Login = () => {
   const [password, setPassword] = useState("");
   const [isPasswordInvalid, setIsPasswordInvalid] = useState(false);
 

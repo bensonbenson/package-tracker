@@ -20,7 +20,7 @@ This is a WIP project, but only because it's missing features from the to-do lis
 
 Make sure you have a firebase/firestore [set up in GCP](https://firebase.google.com/docs/firestore/quickstart#create).
 
-Add a `firebase-creds.js` to the `src/firebase` directory with your respective credentials.
+Add a `firebaseCreds.js` to the `src/firebase` directory with your respective credentials.
 
 ```js
 export const creds = {

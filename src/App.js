@@ -2,7 +2,7 @@ import React from "react";
 import PackageTracker from "./components/PackageTracker";
 import "./index.css";
 
-function App() {
+const App = () => {
   return (
     <div>
       <PackageTracker />

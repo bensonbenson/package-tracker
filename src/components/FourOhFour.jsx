@@ -1,7 +1,7 @@
 import React from "react";
 import "../styles/Login.css";
 
-function FourOhFour() {
+const FourOhFour = () => {
   return (
     <div className="centerLogin">
       <h1>404 - page not found</h1>

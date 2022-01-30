@@ -12,7 +12,7 @@ import {
   Grid,
 } from "@material-ui/core";
 
-function PackageList(props) {
+const PackageList = (props) => {
   // Reverse chronological order for packages
   const sortPackagesByDate = () => {
     const packageList = props.packages;

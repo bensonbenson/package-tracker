@@ -24,7 +24,7 @@ const theme = createTheme({
   },
 });
 
-function PackageTracker() {
+const PackageTracker = () => {
   const [loading, setLoading] = useState(true);
   const [packages, setPackages] = useState([]);
 

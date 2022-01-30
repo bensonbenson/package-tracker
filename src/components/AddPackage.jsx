@@ -16,7 +16,7 @@ import {
   DialogTitle,
 } from "@material-ui/core";
 
-function AddPackage(props) {
+const AddPackage = (props) => {
   const [packageName, setPackageName] = useState("");
   const [trackingNum, setTrackingNum] = useState("");
   const [carrier, setCarrier] = useState("");

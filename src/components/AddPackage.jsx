@@ -151,30 +151,32 @@ const AddPackage = (props) => {
           </div>
         </form>
       </div>
-      <Button
-        onClick={handleAddPackage}
-        variant="contained"
-        color="primary"
-        disableElevation
-        style={{ fontWeight: "bold" }}
-      >
-        Add Package
-      </Button>
-      <Button
-        onClick={handleLogOut}
-        variant="contained"
-        color="secondary"
-        disableElevation
-        style={{ fontWeight: "bold", float: "right" }}
-      >
-        Log Out
-      </Button>
+      <div>
+        <Button
+          onClick={handleAddPackage}
+          variant="contained"
+          color="primary"
+          disableElevation
+          style={{ fontWeight: "bold" }}
+        >
+          Add Package
+        </Button>
+        <Button
+          onClick={handleLogOut}
+          variant="contained"
+          color="secondary"
+          disableElevation
+          style={{ fontWeight: "bold", float: "right" }}
+        >
+          Log Out
+        </Button>
+      </div>
       <Button
         onClick={handleDeleteDialogOpen}
         variant="contained"
         color="secondary"
         disableElevation
-        style={{ fontWeight: "bold", float: "right", marginRight: "25px" }}
+        style={{ fontWeight: "bold", float: "right", marginTop: "25px" }}
       >
         Delete Checked Items
       </Button>

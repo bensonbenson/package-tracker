@@ -64,6 +64,7 @@ yarn start
 - [x] Push data to firestore
 - [x] Pull data from firestore
 - [ ] More polish
+- [ ] Typescript because i was naive and started with JS
 
 ## Preview
 

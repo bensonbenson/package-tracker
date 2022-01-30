@@ -59,6 +59,6 @@ const PackageTracker = () => {
       </Grid>
     </ThemeProvider>
   );
-}
+};
 
 export default PackageTracker;

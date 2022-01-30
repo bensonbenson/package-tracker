@@ -126,6 +126,6 @@ const PackageList = (props) => {
   };
 
   return props.loading ? <Loader /> : <div>{renderPackageList()}</div>;
-}
+};
 
 export default PackageList;

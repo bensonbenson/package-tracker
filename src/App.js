@@ -8,6 +8,6 @@ const App = () => {
       <PackageTracker />
     </div>
   );
-}
+};
 
 export default App;

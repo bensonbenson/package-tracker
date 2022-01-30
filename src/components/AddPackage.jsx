@@ -183,6 +183,6 @@ const AddPackage = (props) => {
       {deleteDialog()}
     </div>
   );
-}
+};
 
 export default AddPackage;

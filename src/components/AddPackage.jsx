@@ -16,7 +16,8 @@ import {
   DialogTitle,
 } from "@material-ui/core";
 
-// regex for carriers from here: https://stackoverflow.com/questions/619977/regular-expression-patterns-for-tracking-numbers
+// https://stackoverflow.com/questions/619977/regular-expression-patterns-for-tracking-numbers
+// https://regexr.com/3e61u
 // fedex currently not able to match
 const upsRegex = new RegExp(
   /\b(1Z ?[0-9A-Z]{3} ?[0-9A-Z]{3} ?[0-9A-Z]{2} ?[0-9A-Z]{4} ?[0-9A-Z]{3} ?[0-9A-Z]|[\dT]\d\d\d ?\d\d\d\d ?\d\d\d)\b/

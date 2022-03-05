@@ -44,8 +44,6 @@ const AddPackage = (props) => {
     const trackingNum = event.target.value;
     setTrackingNum(trackingNum);
 
-    // console.log(trackingNum.match(upsRegex));
-
     // Try to detect carrier
     // ups
     if (

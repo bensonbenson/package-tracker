@@ -57,7 +57,7 @@ yarn start
   - [x] Flesh out UI/CSS better
   - [x] Figure out how to make responsive on mobile
   - [ ] Display error/retry button if fail to fetch data
-  - [ ] Automagically detect carrier
+  - [ ] Automagically detect carrier (currently tries to detect UPS and USPS)
   - [ ] Automagically detect delivered status, requires deeper connection to carrier
 - [x] Attach firestore
 - [x] Configure firestore

@@ -1,6 +1,6 @@
 # Package Tracker
 
-A simple tool to keep track of multiple packages from various carriers all in one place and saved to GCP. All it takes is a firebase account with a simple firebase setup. It's fast and it reacts immediately!
+A simple tool to keep track of multiple packages from various carriers all in one place and saved to Firestore.
 
 Currently supports the following carriers:
 
@@ -14,9 +14,11 @@ DHL
 
 ## WIP
 
-This is a WIP project, but only because it's missing features from the to-do list; it's perfectly usable for everyday package tracking!
+This is a WIP project; in its current state, it's perfectly usable for personal, everyday package tracking!
 
 ## How to get started
+
+This requires you to use Firestore to store your package details.
 
 Make sure you have a firebase/firestore [set up in GCP](https://firebase.google.com/docs/firestore/quickstart#create).
 
@@ -65,6 +67,7 @@ yarn start
 - [x] Pull data from firestore
 - [ ] More polish
 - [ ] Typescript because i was naive and started with JS
+- [ ] More carrier support
 
 ## Preview
 

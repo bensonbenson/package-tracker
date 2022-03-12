@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import "../styles/AddPackage.css";
-import { addPackage } from "../firebase/addToFirebase";
-import { db } from "../firebase/firebase";
+import React, { useState } from 'react';
+import '../styles/AddPackage.css';
+import { addPackage } from '../firebase/addToFirebase';
+import { db } from '../firebase/firebase';
 import {
   Button,
   TextField,
@@ -14,7 +14,7 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
-} from "@material-ui/core";
+} from '@material-ui/core';
 
 // https://stackoverflow.com/questions/619977/regular-expression-patterns-for-tracking-numbers
 // https://regexr.com/3e61u
@@ -27,9 +27,9 @@ const uspsRegex = new RegExp(
 );
 
 const AddPackage = (props) => {
-  const [packageName, setPackageName] = useState("");
-  const [trackingNum, setTrackingNum] = useState("");
-  const [carrier, setCarrier] = useState("");
+  const [packageName, setPackageName] = useState('');
+  const [trackingNum, setTrackingNum] = useState('');
+  const [carrier, setCarrier] = useState('');
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
 
   const handleSelect = (event) => {
@@ -50,32 +50,32 @@ const AddPackage = (props) => {
       trackingNum.match(upsRegex) != null &&
       trackingNum.match(upsRegex).length > 0
     ) {
-      setCarrier("UPS");
+      setCarrier('UPS');
     }
     // usps
     if (
       trackingNum.match(uspsRegex) != null &&
       trackingNum.match(uspsRegex).length > 0
     ) {
-      setCarrier("USPS");
+      setCarrier('USPS');
     }
   };
 
   const handleAddPackage = () => {
     if (!packageName || !trackingNum || !carrier) {
-      window.alert("Please complete all fields.");
+      window.alert('Please complete all fields.');
     } else {
       addPackage(packageName, trackingNum, carrier);
       // Clear fields
-      setPackageName("");
-      setTrackingNum("");
-      setCarrier("");
+      setPackageName('');
+      setTrackingNum('');
+      setCarrier('');
     }
   };
 
   // Remove localstorage and refresh
   const handleLogOut = () => {
-    localStorage.removeItem("packagetracker");
+    localStorage.removeItem('packagetracker');
     window.location.reload();
   };
 
@@ -83,7 +83,7 @@ const AddPackage = (props) => {
   const handleDeleteAllPackages = () => {
     props.packages.forEach((element) => {
       if (element.delivered) {
-        db.collection("packages")
+        db.collection('packages')
           .doc(element.id)
           .delete()
           .catch((error) => {
@@ -184,7 +184,7 @@ const AddPackage = (props) => {
           variant="contained"
           color="primary"
           disableElevation
-          style={{ fontWeight: "bold" }}
+          style={{ fontWeight: 'bold' }}
         >
           Add Package
         </Button>
@@ -193,7 +193,7 @@ const AddPackage = (props) => {
           variant="contained"
           color="secondary"
           disableElevation
-          style={{ fontWeight: "bold", float: "right" }}
+          style={{ fontWeight: 'bold', float: 'right' }}
         >
           Log Out
         </Button>
@@ -203,7 +203,7 @@ const AddPackage = (props) => {
         variant="contained"
         color="secondary"
         disableElevation
-        style={{ fontWeight: "bold", float: "right", marginTop: "25px" }}
+        style={{ fontWeight: 'bold', float: 'right', marginTop: '25px' }}
       >
         Delete Checked Items
       </Button>

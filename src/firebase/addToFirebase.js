@@ -1,6 +1,6 @@
 // import firebase from 'firebase';
-import { db } from "./firebase";
-import { v4 as uuidv4 } from "uuid";
+import { db } from './firebase';
+import { v4 as uuidv4 } from 'uuid';
 
 export const addPackage = (name, trackingNum, carrier) => {
   const id = uuidv4();
@@ -15,7 +15,7 @@ export const addPackage = (name, trackingNum, carrier) => {
     delivered: false,
   };
 
-  db.collection("packages")
+  db.collection('packages')
     .doc(id)
     .set(uspsPackage)
     .catch((error) => {

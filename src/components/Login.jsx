@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import { Redirect } from "react-router-dom";
-import { authPassword } from "../password";
-import "../styles/Login.css";
+import React, { useState } from 'react';
+import { Redirect } from 'react-router-dom';
+import { authPassword } from '../password';
+import '../styles/Login.css';
 
 const Login = () => {
-  const [password, setPassword] = useState("");
+  const [password, setPassword] = useState('');
   const [isPasswordInvalid, setIsPasswordInvalid] = useState(false);
 
   const handlePasswordFormChange = (event) => {
@@ -14,7 +14,7 @@ const Login = () => {
 
   const handleLogin = (event) => {
     if (password === authPassword.password) {
-      localStorage.setItem("packagetracker", "token");
+      localStorage.setItem('packagetracker', 'token');
       window.location.reload();
     } else {
       setIsPasswordInvalid(true);
@@ -22,7 +22,7 @@ const Login = () => {
     }
   };
 
-  if (localStorage.getItem("packagetracker") === "token") {
+  if (localStorage.getItem('packagetracker') === 'token') {
     return <Redirect to="/" />;
   }
 

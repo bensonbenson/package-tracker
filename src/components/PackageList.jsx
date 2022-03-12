@@ -1,7 +1,7 @@
-import React from "react";
-import { db } from "../firebase/firebase";
-import Loader from "./Loader";
-import "../styles/PackageList.css";
+import React from 'react';
+import { db } from '../firebase/firebase';
+import Loader from './Loader';
+import '../styles/PackageList.css';
 import {
   Table,
   TableBody,
@@ -10,7 +10,7 @@ import {
   TableRow,
   Checkbox,
   Grid,
-} from "@material-ui/core";
+} from '@material-ui/core';
 
 const PackageList = (props) => {
   // Reverse chronological order for packages
@@ -32,15 +32,15 @@ const PackageList = (props) => {
     const trackingNum = packageItem.trackingNum;
 
     switch (carrier) {
-      case "USPS":
+      case 'USPS':
         return `https://tools.usps.com/go/TrackConfirmAction?tLabels=${trackingNum}`;
-      case "UPS":
+      case 'UPS':
         return `https://www.ups.com/track?loc=null&tracknum=${trackingNum}`;
-      case "Fedex":
+      case 'Fedex':
         return `https://fedex.com/apps/fedextrack/index.html?tracknumbers=${trackingNum}`;
-      case "Amazon":
+      case 'Amazon':
         return `https://www.amazon.com/gp/your-account/order-details/ref=ppx_yo_dt_b_order_details_o00?ie=UTF8&orderID=${trackingNum}`;
-      case "DHL":
+      case 'DHL':
         return `https://www.dhl.com/en/express/tracking.html?AWB=${trackingNum}`;
       default:
         return `http://doge2048.com/`;
@@ -49,7 +49,7 @@ const PackageList = (props) => {
 
   // Change delivered status of a package
   const handleDelivered = (packageItem) => {
-    db.collection("packages")
+    db.collection('packages')
       .doc(packageItem.id)
       .update({ delivered: !packageItem.delivered })
       .catch((error) => {
@@ -87,18 +87,18 @@ const PackageList = (props) => {
                   <TableRow
                     key={packageItem.id}
                     className={
-                      packageItem.delivered ? "deliveredRow" : "inProgressRow"
+                      packageItem.delivered ? 'deliveredRow' : 'inProgressRow'
                     }
                   >
                     <TableCell
-                      style={{ borderBottom: "none", fontWeight: "1000" }}
+                      style={{ borderBottom: 'none', fontWeight: '1000' }}
                     >
                       {packageItem.name}
                     </TableCell>
-                    <TableCell style={{ borderBottom: "none" }} align="center">
+                    <TableCell style={{ borderBottom: 'none' }} align="center">
                       {packageItem.carrier}
                     </TableCell>
-                    <TableCell style={{ borderBottom: "none" }} align="center">
+                    <TableCell style={{ borderBottom: 'none' }} align="center">
                       <a
                         target="_blank"
                         rel="noopener noreferrer"
@@ -107,7 +107,7 @@ const PackageList = (props) => {
                         Track here
                       </a>
                     </TableCell>
-                    <TableCell style={{ borderBottom: "none" }} align="center">
+                    <TableCell style={{ borderBottom: 'none' }} align="center">
                       {
                         <Checkbox
                           checked={packageItem.delivered}

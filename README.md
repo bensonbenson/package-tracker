@@ -26,13 +26,13 @@ Add a `firebaseCreds.js` to the `src/firebase` directory with your respective cr
 
 ```js
 export const creds = {
-  apiKey: "",
-  authDomain: "",
-  databaseURL: "",
-  projectId: "",
-  storageBucket: "",
-  messagingSenderId: "",
-  appId: "",
+  apiKey: '',
+  authDomain: '',
+  databaseURL: '',
+  projectId: '',
+  storageBucket: '',
+  messagingSenderId: '',
+  appId: '',
 };
 ```
 
@@ -40,7 +40,7 @@ The frontend is password protected. To make use of this locally, add a `password
 
 ```js
 export const authPassword = {
-  password: "yourPassword",
+  password: 'yourPassword',
 };
 ```
 

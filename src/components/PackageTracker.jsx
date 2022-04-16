@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/PackageTracker.css';
-import { Grid } from '@material-ui/core';
+import { Grid } from '@mui/material';
 import AddPackage from './AddPackage';
 import PackageList from './PackageList';
 import { db } from '../firebase/firebase';
-import { ThemeProvider } from '@material-ui/styles';
-import { createTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@mui/material/styles';
+import { createTheme } from '@mui/material/styles';
 import { Redirect } from 'react-router-dom';
 
 const muiFont = "'Gotu', sans-serif";
@@ -49,7 +49,7 @@ const PackageTracker = () => {
       <Grid
         container
         direction="row"
-        justify="space-evenly"
+        justifyContent="space-evenly"
         alignItems="baseline"
       >
         <AddPackage packages={packages} />

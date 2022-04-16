@@ -10,7 +10,7 @@ import {
   TableRow,
   Checkbox,
   Grid,
-} from '@material-ui/core';
+} from '@mui/material';
 
 const PackageList = (props) => {
   // Reverse chronological order for packages
@@ -113,6 +113,7 @@ const PackageList = (props) => {
                           checked={packageItem.delivered}
                           onChange={() => handleDelivered(packageItem)}
                           value={packageItem.id}
+                          color="secondary"
                         />
                       }
                     </TableCell>

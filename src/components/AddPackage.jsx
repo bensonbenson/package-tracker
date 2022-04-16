@@ -14,7 +14,7 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
-} from '@material-ui/core';
+} from '@mui/material';
 
 // https://stackoverflow.com/questions/619977/regular-expression-patterns-for-tracking-numbers
 // https://regexr.com/3e61u
@@ -112,10 +112,16 @@ const AddPackage = (props) => {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleDeleteDialogClose} color="primary">
+          <Button onClick={handleDeleteDialogClose} variant="contained">
             Cancel
           </Button>
-          <Button onClick={handleDeleteAllPackages}>Delete</Button>
+          <Button
+            onClick={handleDeleteAllPackages}
+            variant="contained"
+            color="secondary"
+          >
+            Delete
+          </Button>
         </DialogActions>
       </Dialog>
     );
@@ -151,27 +157,27 @@ const AddPackage = (props) => {
               <InputLabel id="select-label">Select a carrier:</InputLabel>
               <FormControlLabel
                 value="Amazon"
-                control={<Radio color="primary" size="small" />}
+                control={<Radio size="small" />}
                 label="Amazon (use Order ID number)"
               />
               <FormControlLabel
                 value="DHL"
-                control={<Radio color="primary" size="small" />}
+                control={<Radio size="small" />}
                 label="DHL"
               />
               <FormControlLabel
                 value="Fedex"
-                control={<Radio color="primary" size="small" />}
+                control={<Radio size="small" />}
                 label="Fedex"
               />
               <FormControlLabel
                 value="UPS"
-                control={<Radio color="primary" size="small" />}
+                control={<Radio size="small" />}
                 label="UPS"
               />
               <FormControlLabel
                 value="USPS"
-                control={<Radio color="primary" size="small" />}
+                control={<Radio size="small" />}
                 label="USPS"
               />
             </RadioGroup>
@@ -182,7 +188,6 @@ const AddPackage = (props) => {
         <Button
           onClick={handleAddPackage}
           variant="contained"
-          color="primary"
           disableElevation
           style={{ fontWeight: 'bold' }}
         >

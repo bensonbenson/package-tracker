@@ -1,22 +1,13 @@
 {
   "files": {
-    "main.css": "/package-tracker/static/css/main.09ce1684.chunk.css",
-    "main.js": "/package-tracker/static/js/main.84a0a3f9.chunk.js",
-    "main.js.map": "/package-tracker/static/js/main.84a0a3f9.chunk.js.map",
-    "runtime-main.js": "/package-tracker/static/js/runtime-main.f12ed79f.js",
-    "runtime-main.js.map": "/package-tracker/static/js/runtime-main.f12ed79f.js.map",
-    "static/js/2.513b9e6b.chunk.js": "/package-tracker/static/js/2.513b9e6b.chunk.js",
-    "static/js/2.513b9e6b.chunk.js.map": "/package-tracker/static/js/2.513b9e6b.chunk.js.map",
+    "main.css": "/package-tracker/static/css/main.2464186b.css",
+    "main.js": "/package-tracker/static/js/main.231174fa.js",
     "index.html": "/package-tracker/index.html",
-    "precache-manifest.d130683f51ad4ddafe564473398c2fcb.js": "/package-tracker/precache-manifest.d130683f51ad4ddafe564473398c2fcb.js",
-    "service-worker.js": "/package-tracker/service-worker.js",
-    "static/css/main.09ce1684.chunk.css.map": "/package-tracker/static/css/main.09ce1684.chunk.css.map",
-    "static/js/2.513b9e6b.chunk.js.LICENSE.txt": "/package-tracker/static/js/2.513b9e6b.chunk.js.LICENSE.txt"
+    "main.2464186b.css.map": "/package-tracker/static/css/main.2464186b.css.map",
+    "main.231174fa.js.map": "/package-tracker/static/js/main.231174fa.js.map"
   },
   "entrypoints": [
-    "static/js/runtime-main.f12ed79f.js",
-    "static/js/2.513b9e6b.chunk.js",
-    "static/css/main.09ce1684.chunk.css",
-    "static/js/main.84a0a3f9.chunk.js"
+    "static/css/main.2464186b.css",
+    "static/js/main.231174fa.js"
   ]
 }

@@ -14,7 +14,7 @@ DHL
 
 ## WIP
 
-This is a WIP project; in its current state, it's perfectly usable for personal, everyday package tracking!
+This is a WIP project, so while it's perfectly usable there might be weird bugs and issues.
 
 ## How to get started
 

@@ -16,16 +16,6 @@ import {
   DialogTitle,
 } from '@mui/material';
 
-// https://stackoverflow.com/questions/619977/regular-expression-patterns-for-tracking-numbers
-// https://regexr.com/3e61u
-// fedex currently not able to match
-const upsRegex = new RegExp(
-  /\b(1Z ?[0-9A-Z]{3} ?[0-9A-Z]{3} ?[0-9A-Z]{2} ?[0-9A-Z]{4} ?[0-9A-Z]{3} ?[0-9A-Z]|[\dT]\d\d\d ?\d\d\d\d ?\d\d\d)\b/
-);
-const uspsRegex = new RegExp(
-  /((\d{4})(\s?\d{4}){4}\s?\d{2})|((\d{2})(\s?\d{3}){2}\s?\d{2})|((\D{2})(\s?\d{3}){3}\s?\D{2})/
-);
-
 const AddPackage = (props) => {
   const [packageName, setPackageName] = useState('');
   const [trackingNum, setTrackingNum] = useState('');
@@ -43,22 +33,6 @@ const AddPackage = (props) => {
   const handleTrackingNum = (event) => {
     const trackingNum = event.target.value;
     setTrackingNum(trackingNum);
-
-    // Try to detect carrier
-    // ups
-    if (
-      trackingNum.match(upsRegex) != null &&
-      trackingNum.match(upsRegex).length > 0
-    ) {
-      setCarrier('UPS');
-    }
-    // usps
-    if (
-      trackingNum.match(uspsRegex) != null &&
-      trackingNum.match(uspsRegex).length > 0
-    ) {
-      setCarrier('USPS');
-    }
   };
 
   const handleAddPackage = () => {

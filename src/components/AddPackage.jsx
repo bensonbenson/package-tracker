@@ -6,15 +6,16 @@ import {
   Button,
   TextField,
   InputLabel,
-  RadioGroup,
-  FormControlLabel,
-  Radio,
   Dialog,
   DialogActions,
   DialogContent,
   DialogContentText,
   DialogTitle,
+  FormControl,
+  Select,
+  MenuItem,
 } from '@mui/material';
+import { carriers } from '../helpers/carriers';
 
 const AddPackage = (props) => {
   const [packageName, setPackageName] = useState('');
@@ -127,34 +128,20 @@ const AddPackage = (props) => {
             />
           </div>
           <div className="moreSpaceBetweenFields">
-            <RadioGroup value={carrier} onChange={handleSelect}>
+            <FormControl fullWidth>
               <InputLabel id="select-label">Select a carrier:</InputLabel>
-              <FormControlLabel
-                value="Amazon"
-                control={<Radio size="small" />}
-                label="Amazon (use Order ID number)"
-              />
-              <FormControlLabel
-                value="DHL"
-                control={<Radio size="small" />}
-                label="DHL"
-              />
-              <FormControlLabel
-                value="Fedex"
-                control={<Radio size="small" />}
-                label="Fedex"
-              />
-              <FormControlLabel
-                value="UPS"
-                control={<Radio size="small" />}
-                label="UPS"
-              />
-              <FormControlLabel
-                value="USPS"
-                control={<Radio size="small" />}
-                label="USPS"
-              />
-            </RadioGroup>
+              <Select
+                labelId="select-carrier-label"
+                id="select-carrier"
+                value={carrier}
+                label="Carrier"
+                onChange={handleSelect}
+              >
+                {carriers.map((item) => {
+                  return <MenuItem value={item.value}>{item.label}</MenuItem>;
+                })}
+              </Select>
+            </FormControl>
           </div>
         </form>
       </div>

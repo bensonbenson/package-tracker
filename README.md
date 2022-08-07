@@ -68,6 +68,7 @@ yarn start
 - [ ] More polish
 - [ ] Typescript because i was naive and started with JS
 - [ ] More carrier support
+- [ ] Better auth
 
 ## Preview
 

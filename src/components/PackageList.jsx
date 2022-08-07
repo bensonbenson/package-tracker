@@ -1,5 +1,5 @@
 import React from 'react';
-import { db } from '../firebase/firebase';
+import { updatePackageDeliveredStatus } from '../firebase/firebase';
 import Loader from './Loader';
 import '../styles/PackageList.css';
 import {
@@ -29,12 +29,7 @@ const PackageList = (props) => {
 
   // Change delivered status of a package
   const handleDelivered = (packageItem) => {
-    db.collection('packages')
-      .doc(packageItem.id)
-      .update({ delivered: !packageItem.delivered })
-      .catch((error) => {
-        console.log(`Error in changing package delivered status: ${error}`);
-      });
+    updatePackageDeliveredStatus(packageItem);
   };
 
   const renderPackageList = () => {

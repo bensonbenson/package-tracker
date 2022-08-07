@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '../styles/AddPackage.css';
-import { addPackage } from '../firebase/addToFirebase';
-import { db } from '../firebase/firebase';
+import { addPackage, deletePackage } from '../firebase/firebase';
+// import { db } from '../firebase/firebase';
 import {
   Button,
   TextField,
@@ -40,11 +40,12 @@ const AddPackage = (props) => {
     if (!packageName || !trackingNum || !carrier) {
       window.alert('Please complete all fields.');
     } else {
-      addPackage(packageName, trackingNum, carrier);
-      // Clear fields
-      setPackageName('');
-      setTrackingNum('');
-      setCarrier('');
+      addPackage(packageName, trackingNum, carrier).then(() => {
+        // Clear fields
+        setPackageName('');
+        setTrackingNum('');
+        setCarrier('');
+      });
     }
   };
 
@@ -58,12 +59,13 @@ const AddPackage = (props) => {
   const handleDeleteAllPackages = () => {
     props.packages.forEach((element) => {
       if (element.delivered) {
-        db.collection('packages')
-          .doc(element.id)
-          .delete()
-          .catch((error) => {
-            console.log(`Error in deleting a package: ${error}`);
-          });
+        deletePackage(element);
+        // db.collection('packages')
+        //   .doc(element.id)
+        //   .delete()
+        //   .catch((error) => {
+        //     console.log(`Error in deleting a package: ${error}`);
+        //   });
       }
     });
     handleDeleteDialogClose();

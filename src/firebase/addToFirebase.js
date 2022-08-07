@@ -1,12 +1,13 @@
 // import firebase from 'firebase';
 import { db } from './firebase';
 import { v4 as uuidv4 } from 'uuid';
+import { addDoc, collection } from 'firebase/firestore';
 
-export const addPackage = (name, trackingNum, carrier) => {
+export const addPackage = async (name, trackingNum, carrier) => {
   const id = uuidv4();
   const date = new Date();
 
-  const uspsPackage = {
+  const packageItem = {
     id: id,
     name: name,
     timestamp: date,
@@ -15,10 +16,16 @@ export const addPackage = (name, trackingNum, carrier) => {
     delivered: false,
   };
 
-  db.collection('packages')
-    .doc(id)
-    .set(uspsPackage)
-    .catch((error) => {
-      console.log(`Error adding: ${error}`);
-    });
+  try {
+    await addDoc(collection(db, 'packages'), packageItem);
+  } catch (e) {
+    console.log(`Error adding: ${e}`);
+  }
+
+  // db.collection('packages')
+  //   .doc(id)
+  //   .set(uspsPackage)
+  //   .catch((error) => {
+  //     console.log(`Error adding: ${error}`);
+  //   });
 };

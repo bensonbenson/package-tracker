@@ -6,10 +6,11 @@ Currently supports the following carriers:
 
 ```
 USPS
-UPS
+UPS (directs to Bing search, since it has the most tracking info)
 Fedex
 Amazon (only supports Order-ID values)
 DHL
+LaserShip
 ```
 
 ## WIP

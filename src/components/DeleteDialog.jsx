@@ -12,13 +12,15 @@ const DeleteDialog = (props) => {
   const isDeleteDialogOpen = props.isDeleteDialogOpen;
   const handleClose = props.handleClose;
   const handleDelete = props.handleDelete;
+  const checkedPackagesCount = props.checkedPackagesCount;
 
   return (
     <Dialog open={isDeleteDialogOpen} onClose={handleClose}>
       <DialogTitle>Delete Confirmation</DialogTitle>
       <DialogContent>
         <DialogContentText>
-          Are you sure you want to delete all checked packages?
+          Are you sure you want to delete {checkedPackagesCount} checked
+          packages?
         </DialogContentText>
       </DialogContent>
       <DialogActions>

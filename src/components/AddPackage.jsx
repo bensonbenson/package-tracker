@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/AddPackage.css';
 import { addPackage, deletePackage } from '../firebase/firebase';
 import {
@@ -13,10 +13,22 @@ import { carriers } from '../helpers/carriers';
 import DeleteDialog from './DeleteDialog';
 
 const AddPackage = (props) => {
+  const packages = props.packages;
   const [packageName, setPackageName] = useState('');
   const [trackingNum, setTrackingNum] = useState('');
   const [carrier, setCarrier] = useState('');
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
+  const [checkedPackagesCount, setCheckoutPackagesCount] = useState(0);
+
+  useEffect(() => {
+    let packageCount = 0;
+    packages.forEach((element) => {
+      if (element.delivered) {
+        packageCount++;
+      }
+    });
+    setCheckoutPackagesCount(packageCount);
+  }, [packages]);
 
   const handleSelect = (event) => {
     setCarrier(event.target.value);
@@ -52,7 +64,7 @@ const AddPackage = (props) => {
 
   // Delete all checked/delivered items
   const handleDeleteAllPackages = () => {
-    props.packages.forEach((element) => {
+    packages.forEach((element) => {
       if (element.delivered) {
         deletePackage(element);
       }
@@ -136,6 +148,7 @@ const AddPackage = (props) => {
         color="secondary"
         disableElevation
         style={{ fontWeight: 'bold', float: 'right', marginTop: '25px' }}
+        disabled={checkedPackagesCount < 1}
       >
         Delete Checked Items
       </Button>
@@ -144,6 +157,7 @@ const AddPackage = (props) => {
           isDeleteDialogOpen={isDeleteDialogOpen}
           handleClose={handleDeleteDialogClose}
           handleDelete={handleDeleteAllPackages}
+          checkedPackagesCount={checkedPackagesCount}
         />
       }
     </div>

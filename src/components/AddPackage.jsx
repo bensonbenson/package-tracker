@@ -82,84 +82,86 @@ const AddPackage = (props) => {
 
   return (
     <div className="addPackageContainer">
-      <div className="addTitle">Add Package</div>
-      <div>
-        <form className="formStyle">
-          <div className="spaceBetweenFields">
-            <TextField
-              fullWidth
-              required
-              id="packageName"
-              label="Package name"
-              onChange={handlePackageName}
-              value={packageName}
-            />
-          </div>
-          <div className="spaceBetweenFields">
-            <TextField
-              fullWidth
-              required
-              id="trackingNum"
-              label="Tracking number"
-              onChange={handleTrackingNum}
-              value={trackingNum}
-            />
-          </div>
-          <div className="moreSpaceBetweenFields">
-            <FormControl fullWidth>
-              <InputLabel id="select-label">Select a carrier:</InputLabel>
-              <Select
-                labelId="select-carrier-label"
-                id="select-carrier"
-                value={carrier}
-                label="Carrier"
-                onChange={handleSelect}
-              >
-                {carriers.map((item) => {
-                  return <MenuItem value={item.value}>{item.label}</MenuItem>;
-                })}
-              </Select>
-            </FormControl>
-          </div>
-        </form>
-      </div>
-      <div>
+      <div className="innerAddPackageContainer">
+        <div className="addTitle">Add Package</div>
+        <div>
+          <form className="formStyle">
+            <div className="spaceBetweenFields">
+              <TextField
+                fullWidth
+                required
+                id="packageName"
+                label="Package name"
+                onChange={handlePackageName}
+                value={packageName}
+              />
+            </div>
+            <div className="spaceBetweenFields">
+              <TextField
+                fullWidth
+                required
+                id="trackingNum"
+                label="Tracking number"
+                onChange={handleTrackingNum}
+                value={trackingNum}
+              />
+            </div>
+            <div className="moreSpaceBetweenFields">
+              <FormControl fullWidth>
+                <InputLabel id="select-label">Select a carrier:</InputLabel>
+                <Select
+                  labelId="select-carrier-label"
+                  id="select-carrier"
+                  value={carrier}
+                  label="Carrier"
+                  onChange={handleSelect}
+                >
+                  {carriers.map((item) => {
+                    return <MenuItem value={item.value}>{item.label}</MenuItem>;
+                  })}
+                </Select>
+              </FormControl>
+            </div>
+          </form>
+        </div>
+        <div>
+          <Button
+            onClick={handleAddPackage}
+            variant="contained"
+            disableElevation
+            style={{ fontWeight: 'bold' }}
+          >
+            Add Package
+          </Button>
+          <Button
+            onClick={handleLogOut}
+            variant="contained"
+            color="secondary"
+            disableElevation
+            style={{ fontWeight: 'bold', float: 'right' }}
+          >
+            Log Out
+          </Button>
+        </div>
         <Button
-          onClick={handleAddPackage}
-          variant="contained"
-          disableElevation
-          style={{ fontWeight: 'bold' }}
-        >
-          Add Package
-        </Button>
-        <Button
-          onClick={handleLogOut}
+          onClick={handleDeleteDialogOpen}
           variant="contained"
           color="secondary"
           disableElevation
-          style={{ fontWeight: 'bold', float: 'right' }}
+          style={{ fontWeight: 'bold', float: 'right', marginTop: '25px' }}
+          disabled={checkedPackagesCount < 1}
         >
-          Log Out
+          Delete Checked Items
         </Button>
+        {
+          <DeleteDialog
+            isDeleteDialogOpen={isDeleteDialogOpen}
+            handleClose={handleDeleteDialogClose}
+            handleDelete={handleDeleteAllPackages}
+            checkedPackagesCount={checkedPackagesCount}
+          />
+        }
       </div>
-      <Button
-        onClick={handleDeleteDialogOpen}
-        variant="contained"
-        color="secondary"
-        disableElevation
-        style={{ fontWeight: 'bold', float: 'right', marginTop: '25px' }}
-        disabled={checkedPackagesCount < 1}
-      >
-        Delete Checked Items
-      </Button>
-      {
-        <DeleteDialog
-          isDeleteDialogOpen={isDeleteDialogOpen}
-          handleClose={handleDeleteDialogClose}
-          handleDelete={handleDeleteAllPackages}
-          checkedPackagesCount={checkedPackagesCount}
-        />
-      }
     </div>
   );
 };

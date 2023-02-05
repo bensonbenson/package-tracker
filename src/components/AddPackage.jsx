@@ -1,21 +1,16 @@
 import React, { useState } from 'react';
 import '../styles/AddPackage.css';
 import { addPackage, deletePackage } from '../firebase/firebase';
-// import { db } from '../firebase/firebase';
 import {
   Button,
   TextField,
   InputLabel,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
   FormControl,
   Select,
   MenuItem,
 } from '@mui/material';
 import { carriers } from '../helpers/carriers';
+import DeleteDialog from './DeleteDialog';
 
 const AddPackage = (props) => {
   const [packageName, setPackageName] = useState('');
@@ -60,12 +55,6 @@ const AddPackage = (props) => {
     props.packages.forEach((element) => {
       if (element.delivered) {
         deletePackage(element);
-        // db.collection('packages')
-        //   .doc(element.id)
-        //   .delete()
-        //   .catch((error) => {
-        //     console.log(`Error in deleting a package: ${error}`);
-        //   });
       }
     });
     handleDeleteDialogClose();
@@ -77,31 +66,6 @@ const AddPackage = (props) => {
 
   const handleDeleteDialogClose = () => {
     setIsDeleteDialogOpen(false);
-  };
-
-  const deleteDialog = () => {
-    return (
-      <Dialog open={isDeleteDialogOpen} onClose={handleDeleteDialogClose}>
-        <DialogTitle>Delete Confirmation</DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            Are you sure you want to delete all checked packages?
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleDeleteDialogClose} variant="contained">
-            Cancel
-          </Button>
-          <Button
-            onClick={handleDeleteAllPackages}
-            variant="contained"
-            color="secondary"
-          >
-            Delete
-          </Button>
-        </DialogActions>
-      </Dialog>
-    );
   };
 
   return (
@@ -175,7 +139,13 @@ const AddPackage = (props) => {
       >
         Delete Checked Items
       </Button>
-      {deleteDialog()}
+      {
+        <DeleteDialog
+          isDeleteDialogOpen={isDeleteDialogOpen}
+          handleClose={handleDeleteDialogClose}
+          handleDelete={handleDeleteAllPackages}
+        />
+      }
     </div>
   );
 };

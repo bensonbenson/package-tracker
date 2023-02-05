@@ -15,6 +15,7 @@
 }
 
 .addPackageContainer {
-  width: 75%;
-  max-width: 1350px;
+  width: 100%;
+  padding-left: 50px;
+  padding-right: 50px;
 }

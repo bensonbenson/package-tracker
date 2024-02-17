@@ -14,6 +14,7 @@ import {
 import { generateCarrierTrackingUrl } from '../helpers/carriers';
 
 const PackageList = (props) => {
+  const isLoading = props.loading;
   // Reverse chronological order for packages
   const sortPackagesByDate = () => {
     const packageList = props.packages;
@@ -101,7 +102,7 @@ const PackageList = (props) => {
       );
   };
 
-  return props.loading ? <Loader /> : <div>{renderPackageList()}</div>;
+  return isLoading ? <Loader /> : <div>{renderPackageList()}</div>;
 };
 
 export default PackageList;

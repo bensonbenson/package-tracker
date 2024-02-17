@@ -11,6 +11,7 @@ import {
 } from '@mui/material';
 import { carriers } from '../helpers/carriers';
 import DeleteDialog from './DeleteDialog';
+import MissingInfoDialog from './MissingInfoDialog';
 
 const AddPackage = (props) => {
   const packages = props.packages;
@@ -18,7 +19,8 @@ const AddPackage = (props) => {
   const [trackingNum, setTrackingNum] = useState('');
   const [carrier, setCarrier] = useState('');
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
-  const [checkedPackagesCount, setCheckoutPackagesCount] = useState(0);
+  const [checkedPackagesCount, setCheckedPackagesCount] = useState(0);
+  const [isMissingInfoDialogOpen, setIsMissingInfoDialogOpen] = useState(false);
 
   useEffect(() => {
     let packageCount = 0;
@@ -27,7 +29,7 @@ const AddPackage = (props) => {
         packageCount++;
       }
     });
-    setCheckoutPackagesCount(packageCount);
+    setCheckedPackagesCount(packageCount);
   }, [packages]);
 
   const handleSelect = (event) => {
@@ -45,15 +47,18 @@ const AddPackage = (props) => {
 
   const handleAddPackage = () => {
     if (!packageName || !trackingNum || !carrier) {
-      window.alert('Please complete all fields.');
+      setIsMissingInfoDialogOpen(true);
     } else {
       addPackage(packageName, trackingNum, carrier).then(() => {
-        // Clear fields
-        setPackageName('');
-        setTrackingNum('');
-        setCarrier('');
+        resetFields();
       });
     }
+  };
+
+  const resetFields = () => {
+    setPackageName('');
+    setTrackingNum('');
+    setCarrier('');
   };
 
   // Remove localstorage and refresh
@@ -78,6 +83,10 @@ const AddPackage = (props) => {
 
   const handleDeleteDialogClose = () => {
     setIsDeleteDialogOpen(false);
+  };
+
+  const handleMissingInfoDialogClose = () => {
+    setIsMissingInfoDialogOpen(false);
   };
 
   return (
@@ -159,6 +168,12 @@ const AddPackage = (props) => {
             handleClose={handleDeleteDialogClose}
             handleDelete={handleDeleteAllPackages}
             checkedPackagesCount={checkedPackagesCount}
+          />
+        }
+        {
+          <MissingInfoDialog
+            isMissingInfoDialogOpen={isMissingInfoDialogOpen}
+            handleClose={handleMissingInfoDialogClose}
           />
         }
       </div>

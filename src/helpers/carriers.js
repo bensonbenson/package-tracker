@@ -35,7 +35,7 @@ export const generateCarrierTrackingUrl = (packageItem) => {
     case 'USPS':
       return `https://tools.usps.com/go/TrackConfirmAction?tLabels=${trackingNum}`;
     case 'UPS':
-      return `https://www.bing.com/search?q=${trackingNum}`;
+      return `https://www.ups.com/track?tracknum=${trackingNum}`;
     case 'Fedex':
       return `https://fedex.com/apps/fedextrack/index.html?tracknumbers=${trackingNum}`;
     case 'Amazon':

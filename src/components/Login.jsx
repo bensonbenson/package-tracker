@@ -1,30 +1,20 @@
-import React, { useState } from 'react';
-import { Redirect } from 'react-router-dom';
-import { authPassword } from '../password';
+import React, { useState, useContext } from 'react';
+import { AuthContext } from './AuthContext';
 import '../styles/Login.css';
 
 const Login = () => {
   const [password, setPassword] = useState('');
   const [isPasswordInvalid, setIsPasswordInvalid] = useState(false);
-
-  const handlePasswordFormChange = (event) => {
-    let newPass = event.target.value;
-    setPassword(newPass);
-  };
+  const { login } = useContext(AuthContext);
 
   const handleLogin = (event) => {
-    if (password === authPassword.password) {
-      localStorage.setItem('packagetracker', 'token');
-      window.location.reload();
-    } else {
+    event.preventDefault();
+
+    const success = login(password);
+    if (!success) {
       setIsPasswordInvalid(true);
-      event.preventDefault();
     }
   };
-
-  if (localStorage.getItem('packagetracker') === 'token') {
-    return <Redirect to="/" />;
-  }
 
   return (
     <div className="centerLogin">
@@ -34,7 +24,7 @@ const Login = () => {
           <input
             type="password"
             name="password"
-            onChange={handlePasswordFormChange}
+            onChange={(e) => setPassword(e.target.value)}
           />
           <input type="submit" value="Submit" />
         </div>

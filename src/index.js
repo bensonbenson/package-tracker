@@ -1,21 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import * as serviceWorker from './serviceWorker';
-import { Switch, Route, HashRouter } from 'react-router-dom';
-import Login from './components/Login';
-import FourOhFour from './components/FourOhFour';
+import { Switch, Route, BrowserRouter } from 'react-router-dom';
+import ProtectedRoute from './components/ProtectedRoute';
+import { AuthProvider } from './components/AuthContext';
 
 ReactDOM.render(
   <React.StrictMode>
-    <HashRouter>
-      <Switch>
-        <Route exact path="/" component={App} />
-        <Route path="/login" component={Login} />
-        <Route component={FourOhFour} />
-      </Switch>
-    </HashRouter>
+    <AuthProvider>
+      <BrowserRouter>
+        <Switch>
+          <ProtectedRoute>
+            <Route path="/" component={ProtectedRoute} />
+          </ProtectedRoute>
+        </Switch>
+      </BrowserRouter>
+    </AuthProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

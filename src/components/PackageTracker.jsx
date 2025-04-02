@@ -6,7 +6,6 @@ import PackageList from './PackageList';
 import { packageCollection } from '../firebase/firebase';
 import { ThemeProvider } from '@mui/material/styles';
 import { createTheme } from '@mui/material/styles';
-import { Redirect } from 'react-router-dom';
 import { onSnapshot } from 'firebase/firestore';
 
 const muiFont = "'Gotu', sans-serif";
@@ -39,10 +38,6 @@ const PackageTracker = () => {
 
     return () => unsub();
   }, []);
-
-  if (!localStorage.getItem('packagetracker')) {
-    return <Redirect to="/login" />;
-  }
 
   return (
     <ThemeProvider theme={theme}>

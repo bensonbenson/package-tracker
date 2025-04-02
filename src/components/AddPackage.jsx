@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import '../styles/AddPackage.css';
 import { addPackage, deletePackage } from '../firebase/firebase';
 import {
@@ -9,6 +9,7 @@ import {
   Select,
   MenuItem,
 } from '@mui/material';
+import { AuthContext } from './AuthContext';
 import { carriers } from '../helpers/carriers';
 import DeleteDialog from './DeleteDialog';
 import MissingInfoDialog from './MissingInfoDialog';
@@ -21,6 +22,7 @@ const AddPackage = (props) => {
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
   const [checkedPackagesCount, setCheckedPackagesCount] = useState(0);
   const [isMissingInfoDialogOpen, setIsMissingInfoDialogOpen] = useState(false);
+  const { logout } = useContext(AuthContext);
 
   useEffect(() => {
     let packageCount = 0;
@@ -63,8 +65,7 @@ const AddPackage = (props) => {
 
   // Remove localstorage and refresh
   const handleLogOut = () => {
-    localStorage.removeItem('packagetracker');
-    window.location.reload();
+    logout();
   };
 
   // Delete all checked/delivered items

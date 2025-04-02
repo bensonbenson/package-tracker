@@ -18,12 +18,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = (password) => {
     if (password === authPassword.password) {
-      const storageItem = {
-        value: 'token',
-        expiry: Date.now() + 7 * 24 * 60 * 60 * 1000, // 1 week
-      };
-
-      localStorage.setItem('packagetracker', JSON.stringify(storageItem));
+      localStorage.setItem('packagetracker', 'token');
       setIsAuthenticated(true);
       return true;
     }

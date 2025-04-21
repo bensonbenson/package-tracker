@@ -8,10 +8,9 @@ import {
   TableCell,
   TableHead,
   TableRow,
-  Checkbox,
   Grid,
 } from '@mui/material';
-import { generateCarrierTrackingUrl } from '../helpers/carriers';
+import PackageListItem from './PackageListItem';
 
 const PackageList = (props) => {
   const isLoading = props.loading;
@@ -40,7 +39,7 @@ const PackageList = (props) => {
     else
       return (
         <Grid container>
-          <Grid item xs={12}>
+          <Grid>
             <Table className="tableContainer">
               <TableHead>
                 <TableRow>
@@ -56,44 +55,16 @@ const PackageList = (props) => {
                   <TableCell className="tableCell" align="center">
                     Delivered
                   </TableCell>
+                  <TableCell className="tableCell" align="center"></TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
                 {packageList.map((packageItem) => (
-                  <TableRow
+                  <PackageListItem
                     key={packageItem.id}
-                    className={
-                      packageItem.delivered ? 'deliveredRow' : 'inProgressRow'
-                    }
-                  >
-                    <TableCell
-                      style={{ borderBottom: 'none', fontWeight: '1000' }}
-                    >
-                      {packageItem.name}
-                    </TableCell>
-                    <TableCell style={{ borderBottom: 'none' }} align="center">
-                      {packageItem.carrier}
-                    </TableCell>
-                    <TableCell style={{ borderBottom: 'none' }} align="center">
-                      <a
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        href={generateCarrierTrackingUrl(packageItem)}
-                      >
-                        Track here
-                      </a>
-                    </TableCell>
-                    <TableCell style={{ borderBottom: 'none' }} align="center">
-                      {
-                        <Checkbox
-                          checked={packageItem.delivered}
-                          onChange={() => handleDelivered(packageItem)}
-                          value={packageItem.id}
-                          color="secondary"
-                        />
-                      }
-                    </TableCell>
-                  </TableRow>
+                    packageItem={packageItem}
+                    handleDelivered={handleDelivered}
+                  />
                 ))}
               </TableBody>
             </Table>

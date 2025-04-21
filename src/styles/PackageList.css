@@ -6,6 +6,10 @@
   background-color: #e8eaf6;
 }
 
+.editingRow {
+  background-color: #ede0ad;
+}
+
 .tableCell {
   font-weight: 1000;
   white-space: nowrap;

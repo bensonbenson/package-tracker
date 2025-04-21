@@ -2,7 +2,7 @@
 export const carriers = [
   {
     value: 'Amazon',
-    label: 'Amazon (use Order ID number)',
+    label: 'Amazon',
   },
   {
     value: 'DHL',

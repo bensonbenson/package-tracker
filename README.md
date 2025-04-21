@@ -67,9 +67,8 @@ npm start
 - [x] Push data to firestore
 - [x] Pull data from firestore
 - [ ] More polish
-- [ ] Typescript because i was naive and started with JS
-- [ ] More carrier support
-- [ ] Better auth
+- [ ] Lazy load large amount of packages
+- [ ] Select all for delivered
 
 ## Preview
 

@@ -58,4 +58,17 @@ export const updatePackageDeliveredStatus = async (packageItem) => {
   }
 };
 
+// Modifies package item
+export const updatePackageItem = async (packageItem) => {
+  try {
+    await updateDoc(doc(db, 'packages', packageItem.id), {
+      name: packageItem.name,
+      carrier: packageItem.carrier,
+      trackingNum: packageItem.trackingNum,
+    });
+  } catch (e) {
+    console.log(`Error updating: ${e}`);
+  }
+};
+
 export { db };

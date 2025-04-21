@@ -54,22 +54,21 @@ npm start
 
 ## To-do
 
-- [ ] UI
-  - [x] Add package section
-  - [x] Package list/history
-  - [x] Flesh out UI/CSS better
-  - [x] Figure out how to make responsive on mobile
-  - [ ] Display error/retry button if fail to fetch data
-  - [ ] Automagically detect carrier
-  - [ ] Automagically detect delivered status, requires deeper connection to carrier
+- [x] Add package section
+- [x] Package list/history
+- [x] Flesh out UI/CSS better
+- [x] Figure out how to make responsive on mobile
+- [ ] Display error/retry button if fail to fetch data
+- [ ] Automagically detect carrier
+- [ ] Automagically detect delivered status, requires deeper connection to carrier
 - [x] Attach firestore
 - [x] Configure firestore
 - [x] Push data to firestore
 - [x] Pull data from firestore
-- [ ] More polish
 - [ ] Lazy load large amount of packages
 - [ ] Select all for delivered
+- [ ] Testing
 
-## Preview
+## Preview (old gif)
 
 ![alt text](./src/assets/preview.gif)

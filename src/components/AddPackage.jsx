@@ -142,7 +142,7 @@ const AddPackage = (props) => {
               Add Package
             </Button>
           </div>
-          <div className="buttonItem">
+          <div>
             <Button
               onClick={handleDeleteDialogOpen}
               variant="contained"

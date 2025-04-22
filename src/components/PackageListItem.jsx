@@ -1,7 +1,14 @@
 import React, { useState } from 'react';
-import { TableCell, TableRow, Checkbox, Button } from '@mui/material';
+import {
+  TableCell,
+  TableRow,
+  Checkbox,
+  IconButton,
+  Tooltip,
+} from '@mui/material';
 import { generateCarrierTrackingUrl } from '../helpers/carriers';
 import PackageListItemEditMode from './PackageListItemEditMode';
+import EditIcon from '@mui/icons-material/Edit';
 import '../styles/PackageList.css';
 
 const PackageListItem = (props) => {
@@ -57,9 +64,11 @@ const PackageListItem = (props) => {
         }
       </TableCell>
       <TableCell style={{ borderBottom: 'none' }} align="center">
-        <Button variant="contained" onClick={handleEditItem}>
-          Edit
-        </Button>
+        <Tooltip title="Edit package">
+          <IconButton onClick={handleEditItem}>
+            <EditIcon />
+          </IconButton>
+        </Tooltip>
       </TableCell>
     </TableRow>
   );

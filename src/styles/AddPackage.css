@@ -24,3 +24,11 @@
   max-width: 1280px;
   margin: 0 auto;
 }
+
+.buttonContainer {
+  display: flex;
+}
+
+.buttonItem {
+  margin-right: 10px;
+}

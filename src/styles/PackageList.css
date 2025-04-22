@@ -20,10 +20,3 @@
   table-layout: fixed;
   max-width: 1280px;
 }
-
-.editCell {
-  font-weight: 1000;
-  white-space: nowrap;
-  align-items: center;
-  width: 150px;
-}

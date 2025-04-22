@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/AddPackage.css';
 import { addPackage, deletePackage } from '../firebase/firebase';
 import {
@@ -9,7 +9,6 @@ import {
   Select,
   MenuItem,
 } from '@mui/material';
-import { AuthContext } from './AuthContext';
 import { carriers } from '../helpers/carriers';
 import DeleteDialog from './DeleteDialog';
 import MissingInfoDialog from './MissingInfoDialog';
@@ -22,7 +21,6 @@ const AddPackage = (props) => {
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
   const [checkedPackagesCount, setCheckedPackagesCount] = useState(0);
   const [isMissingInfoDialogOpen, setIsMissingInfoDialogOpen] = useState(false);
-  const { logout } = useContext(AuthContext);
 
   useEffect(() => {
     let packageCount = 0;
@@ -63,11 +61,6 @@ const AddPackage = (props) => {
     setCarrier('');
   };
 
-  // Remove localstorage and refresh
-  const handleLogOut = () => {
-    logout();
-  };
-
   // Delete all checked/delivered items
   const handleDeleteAllPackages = () => {
     packages.forEach((element) => {
@@ -93,7 +86,7 @@ const AddPackage = (props) => {
   return (
     <div className="addPackageContainer">
       <div className="innerAddPackageContainer">
-        <div className="addTitle">Add Package</div>
+        <div className="addTitle">Enter package details</div>
         <div>
           <form className="formStyle">
             <div className="spaceBetweenFields">
@@ -118,12 +111,12 @@ const AddPackage = (props) => {
             </div>
             <div className="moreSpaceBetweenFields">
               <FormControl fullWidth>
-                <InputLabel id="select-label">Select a carrier:</InputLabel>
+                <InputLabel id="select-label">Carrier *</InputLabel>
                 <Select
                   labelId="select-carrier-label"
                   id="select-carrier"
                   value={carrier}
-                  label="Carrier"
+                  label="Carrier *"
                   onChange={handleSelect}
                 >
                   {carriers.map((item) => {
@@ -148,25 +141,16 @@ const AddPackage = (props) => {
             Add Package
           </Button>
           <Button
-            onClick={handleLogOut}
+            onClick={handleDeleteDialogOpen}
             variant="contained"
             color="secondary"
             disableElevation
             style={{ fontWeight: 'bold', float: 'right' }}
+            disabled={checkedPackagesCount < 1}
           >
-            Log Out
+            Delete Checked Items
           </Button>
         </div>
-        <Button
-          onClick={handleDeleteDialogOpen}
-          variant="contained"
-          color="secondary"
-          disableElevation
-          style={{ fontWeight: 'bold', float: 'right', marginTop: '25px' }}
-          disabled={checkedPackagesCount < 1}
-        >
-          Delete Checked Items
-        </Button>
         {
           <DeleteDialog
             isDeleteDialogOpen={isDeleteDialogOpen}

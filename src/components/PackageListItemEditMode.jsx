@@ -11,7 +11,6 @@ import {
   Input,
   InputAdornment,
 } from '@mui/material';
-
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import EditIcon from '@mui/icons-material/Edit';
 import CancelIcon from '@mui/icons-material/Cancel';
@@ -45,6 +44,7 @@ const PackageListItemEditMode = (props) => {
     <TableRow key={packageItem.id} className={'editingRow'}>
       <TableCell style={{ borderBottom: 'none', fontWeight: '1000' }}>
         <Input
+          color="secondary"
           value={packageName}
           onChange={(e) => setPackageName(e.target.value)}
           placeholder="Package Name"
@@ -59,6 +59,7 @@ const PackageListItemEditMode = (props) => {
       <TableCell style={{ borderBottom: 'none' }} align="center">
         <FormControl variant="standard">
           <Select
+            color="secondary"
             labelId="select-carrier-label"
             id="select-carrier"
             value={carrier}
@@ -77,6 +78,7 @@ const PackageListItemEditMode = (props) => {
       </TableCell>
       <TableCell style={{ borderBottom: 'none' }} align="center">
         <Input
+          color="secondary"
           value={trackingNum}
           onChange={(e) => setTrackingNum(e.target.value)}
           placeholder="Tracking Number"

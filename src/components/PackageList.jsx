@@ -50,12 +50,12 @@ const PackageList = (props) => {
                     Carrier
                   </TableCell>
                   <TableCell className="tableCell" align="center">
-                    Tracking
+                    Tracking Num
                   </TableCell>
                   <TableCell className="tableCell" align="center">
                     Delivered
                   </TableCell>
-                  <TableCell className="tableCell" align="center"></TableCell>
+                  <TableCell className="editCell" align="center"></TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>

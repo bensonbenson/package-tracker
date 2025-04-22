@@ -7,6 +7,9 @@ import { packageCollection } from '../firebase/firebase';
 import { ThemeProvider } from '@mui/material/styles';
 import { createTheme } from '@mui/material/styles';
 import { onSnapshot } from 'firebase/firestore';
+import MenuIcon from '@mui/icons-material/Menu';
+import { IconButton, Drawer } from '@mui/material';
+import DrawerContents from './DrawerContents';
 
 const muiFont = "'Gotu', sans-serif";
 
@@ -27,6 +30,7 @@ const theme = createTheme({
 const PackageTracker = () => {
   const [loading, setLoading] = useState(true);
   const [packages, setPackages] = useState([]);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   // Get realtime updates from firestore using Snapshots
   useEffect(() => {
@@ -39,9 +43,27 @@ const PackageTracker = () => {
     return () => unsub();
   }, []);
 
+  const handleDrawerToggle = () => {
+    setIsDrawerOpen(!isDrawerOpen);
+  };
+
   return (
     <ThemeProvider theme={theme}>
-      <div className="centertitle">Package Tracker</div>
+      <Drawer
+        anchor="right"
+        open={isDrawerOpen}
+        onClose={() => setIsDrawerOpen(false)}
+      >
+        <DrawerContents />
+      </Drawer>
+      <div className="centertitle">
+        <div className="headertitle">Package Tracker</div>
+        <div className="headermenu">
+          <IconButton aria-label="menu" onClick={handleDrawerToggle}>
+            <MenuIcon />
+          </IconButton>
+        </div>
+      </div>
       <Grid
         container
         direction="row"
